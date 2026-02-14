@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNEAKER ZOO // MANIFESTO</title>
+    <meta name="description"
+        content="Enter the Deep Void. The story behind the world's most exclusive kinetic sneaker archive.">
+
+    <!-- Fonts & Styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&family=Syne:wght@400;700;800&family=Syncopate:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        /* SCROLLYTELLING LAYOUT */
+        .archive-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 4rem 2rem;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .archive-hero {
+            text-align: center;
+            z-index: 2;
+        }
+
+        .kinetic-title {
+            font-family: 'Syncopate', sans-serif;
+            font-size: clamp(3rem, 8vw, 8rem);
+            font-weight: 700;
+            line-height: 0.9;
+            color: transparent;
+            -webkit-text-stroke: 2px rgba(255, 255, 255, 0.8);
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .kinetic-title span {
+            display: block;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: textRise 1s cubic-bezier(0.2, 1, 0.3, 1) forwards;
+        }
+
+        .kinetic-title span:nth-child(2) {
+            animation-delay: 0.2s;
+            -webkit-text-stroke: 0;
+            color: var(--accent);
+        }
+
+        .kinetic-title span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes textRise {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .manifesto-text {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            max-width: 800px;
+            line-height: 1.5;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .highlight {
+            color: var(--hologram);
+            font-weight: 700;
+        }
+
+        /* GRID OVERLAY */
+        .cyber-grid-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(255, 51, 51, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 51, 51, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* TEAM CARDS */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 4rem;
+        }
+
+        .team-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+
+        .team-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+            background: rgba(255, 51, 51, 0.05);
+            /* Red Tint */
+        }
+
+        .member-role {
+            font-family: 'Syncopate', sans-serif;
+            font-size: 0.8rem;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .member-name {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .member-bio {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body class="loading">
+
+    <!-- BACKGROUND NOISE -->
+    <div class="noise-overlay"></div>
+
+    <!-- DYNAMIC HEADER -->
+    <div id="header-container"></div>
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        <!-- SECTION 1: THE MANIFESTO -->
+        <section class="archive-section">
+            <div class="cyber-grid-bg"></div>
+            <div class="archive-hero">
+                <h1 class="kinetic-title">
+                    <span>We Are</span>
+                    <span>The Void</span>
+                    <span>Hunters</span>
+                </h1>
+                <p class="manifesto-text">
+                    Sneaker Zoo isn't a store. It's a <span class="highlight">containment facility</span> for the rarest
+                    kinetic footwear on Earth.
+                    <br><br>
+                    Forged in the static of the early web, we hunt down deadstock relics and future grails, preserving
+                    them in our digital archive until you claim them.
+                </p>
+            </div>
+        </section>
+
+        <!-- SECTION 2: THE PHILOSOPHY -->
+        <section class="archive-section" style="background: #050505;">
+            <div class="content-wrapper"
+                style="display:flex; flex-wrap:wrap; align-items:center; gap:4rem; max-width:1200px; z-index:2;">
+                <div style="flex:1; min-width:300px;">
+                    <h2 class="section-title" style="font-size:3rem; margin-bottom:1rem;">NO FAKES.<br>NO MERCY.</h2>
+                    <p style="color:var(--text-secondary); line-height:1.7;">
+                        Every pair that enters the Zoo undergoes a rigorous <strong>38-point authentication
+                            protocol</strong>. We don't just check the stitching; we check the soul.
+                        If it doesn't vibrate with the right frequency, it gets incinerated.
+                        <br><br>
+                        We believe in the power of the <span style="color:var(--accent)">Artifact</span>. A sneaker is
+                        more than leather and glue—it's a piece of cultural history frozen in time.
+                    </p>
+                </div>
+                <div style="flex:1; min-width:300px; display:flex; justify-content:center;">
+                    <!-- Abstract Visual Representation -->
+                    <div
+                        style="width:300px; height:300px; border:2px solid var(--hologram); border-radius:50%; display:flex; align-items:center; justify-content:center; position:relative; animation: rotateRing 10s linear infinite;">
+                        <div
+                            style="width:200px; height:200px; border:2px solid var(--accent); border-radius:50%; position:absolute; animation: rotateRing 5s linear infinite reverse;">
+                        </div>
+                        <div
+                            style="width:400px; height:2px; background:var(--bg-glass); position:absolute; transform:rotate(45deg);">
+                        </div>
+                        <span style="font-family:'Syncopate'; color:white; font-size:2rem; font-weight:700;">PURE</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: THE TEAM -->
+        <section class="archive-section">
+            <h2 class="section-title" style="margin-bottom:3rem; text-align:center;">ARCHITECTS</h2>
+            <div class="team-grid">
+                <!-- Curator -->
+                <article class="team-card">
+                    <span class="member-role">HEAD CURATOR</span>
+                    <h3 class="member-name">Anonymous</h3>
+                    <p class="member-bio">The mysterious founder. Rumored to own the only pair of AJ1s worn on the moon.
+                        obsession with brutalist architecture and clean code.</p>
+                </article>
+
+                <!-- Auth -->
+                <article class="team-card">
+                    <span class="member-role">LEAD AUTHENTICATOR</span>
+                    <h3 class="member-name">Unit 734</h3>
+                    <p class="member-bio">An AI-assisted human hybrid specializing in material analysis. Can spot a fake
+                        stitching pattern from 300 yards away.</p>
+                </article>
+
+                <!-- Logistics -->
+                <article class="team-card">
+                    <span class="member-role">LOGISTICS</span>
+                    <h3 class="member-name">Viper</h3>
+                    <p class="member-bio">Ensures the payload is delivered. Zero lost packages in 5 years. Operates
+                        entirely at night.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="archive-section" style="min-height:50vh;">
+            <h2
+                style="font-family:'Syncopate'; font-size:clamp(2rem, 5vw, 4rem); text-align:center; margin-bottom:2rem;">
+                JOIN THE HUNT</h2>
+            <a href="showcase.html" class="btn-primary" style="transform:scale(1.2);">VIEW ARCHIVE</a>
+        </section>
+
+    </main>
+
+    <!-- DYNAMIC FOOTER -->
+    <div id="footer-container"></div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Local animation script for the ring
+        document.body.insertAdjacentHTML('beforeend', `<style>@keyframes rotateRing { to { transform: rotate(360deg); } }</style>`);
+    </script>
+</body>
+
+</html>

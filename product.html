@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNEAKER ZOO // ARTIFACT</title>
+    <meta name="description" content="Detailed analysis of the selected kinetic artifact.">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+
+<body style="overflow: hidden;"> <!-- Split layout often needs hidden overflow -->
+
+    <header id="bespoke-header" style="position: fixed; top: 0; width: 100%; padding: 2rem; z-index: 100;">
+        <!-- DYNAMIC HEADER INJECTED BY JS -->
+    </header>
+
+    <main style="display: grid; grid-template-columns: 1fr 1fr; height: 100vh;">
+
+        <!-- VISUAL (HOLOGRAM) -->
+        <div id="hologram-container"
+            style="background: #050505; display: flex; align-items: center; justify-content: center; border-right: 1px solid var(--line); overflow: hidden; position: relative;">
+            <!-- CANVAS INJECTED BY THREE.JS -->
+        </div>
+
+        <!-- INFO -->
+        <div style="padding: 10vh 5vw; display: flex; flex-direction: column; justify-content: center;">
+            <h1 id="p-name" style="font-size: 4rem; margin-bottom: 1rem;">LOADING...</h1>
+            <div id="p-variant"
+                style="font-family: var(--font-head); font-size: 1.5rem; color: var(--hologram); margin-bottom: 2rem;">
+                Please Wait...</div>
+
+            <p id="p-desc" style="font-family: var(--font-body); margin-bottom: 3rem; max-width: 400px; opacity: 0.8;">
+                Fetching archival data...
+            </p>
+
+            <div style="margin-bottom: 3rem;">
+                <input type="text" class="input-bespoke" placeholder="SELECT SIZE (US)" style="margin-bottom: 1rem;">
+                <div id="p-price" style="font-family: var(--font-head); font-size: 2rem; margin-top: 1rem;">---</div>
+            </div>
+
+            <button id="btn-add" class="btn-magnet" style="align-self: flex-start;">ADD TO CART</button>
+        </div>
+
+    </main>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

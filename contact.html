@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNEAKER ZOO // TRANSMISSION</title>
+    <meta name="description"
+        content="Establish connection with the Sneaker Zoo network. Support and general inquiries.">
+
+    <!-- Fonts & Styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&family=Syne:wght@400;700;800&family=Syncopate:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 80vh;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        @media (max-width: 900px) {
+            .contact-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .contact-info {
+            padding-right: 2rem;
+        }
+
+        .contact_title {
+            font-family: 'Syncopate', sans-serif;
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: 2rem;
+            color: white;
+        }
+
+        .info-block {
+            margin-bottom: 2rem;
+            border-left: 2px solid var(--accent);
+            padding-left: 1rem;
+        }
+
+        .info-label {
+            font-family: 'Syncopate', sans-serif;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .info-value {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        /* FORM */
+        .contact-form {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 3rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .form-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 1rem 0;
+            color: white;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-bottom-color: var(--accent);
+        }
+
+        .form-label {
+            position: absolute;
+            top: 1rem;
+            left: 0;
+            color: var(--text-muted);
+            pointer-events: none;
+            transition: all 0.3s ease;
+            font-family: 'Syncopate', sans-serif;
+            font-size: 0.8rem;
+        }
+
+        .form-input:focus~.form-label,
+        .form-input:not(:placeholder-shown)~.form-label {
+            top: -1rem;
+            font-size: 0.7rem;
+            color: var(--accent);
+        }
+
+        .btn-submit {
+            width: 100%;
+            background: var(--text-primary);
+            color: var(--bg-dark);
+            border: none;
+            padding: 1.5rem;
+            font-family: 'Syncopate', sans-serif;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            background: var(--accent);
+            color: white;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+
+<body class="loading">
+    <div class="noise-overlay"></div>
+    <div id="header-container"></div>
+
+    <main>
+        <div class="contact-layout">
+            <!-- Left Info -->
+            <div class="contact-info">
+                <h1 class="contact_title">SIGNAL<br><span style="color:var(--accent)">COMMAND</span></h1>
+
+                <p style="color:var(--text-secondary); margin-bottom:3rem; line-height:1.6;">
+                    Our operators are active on the network 24/7. Transmit your query regarding order status,
+                    acquisition requests, or protocol violations.
+                </p>
+
+                <div class="info-block">
+                    <span class="info-label">PHYSICAL NODE</span>
+                    <div class="info-value">2481 Richmond Rd<br>Staten Island, NY 10306</div>
+                </div>
+
+                <div class="info-block">
+                    <span class="info-label">SECURE LINE</span>
+                    <div class="info-value">support@sneakerzoo.com</div>
+                </div>
+
+                <div class="info-block">
+                    <span class="info-label">OPERATION HOURS</span>
+                    <div class="info-value">DAILY // 11:00 — 19:00 EST</div>
+                </div>
+            </div>
+
+            <!-- Right Form -->
+            <div class="contact-form">
+                <form id="contact-form">
+                    <div class="form-group">
+                        <input type="text" class="form-input" id="c-name" placeholder=" " required>
+                        <label class="form-label">IDENTITY (NAME)</label>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" class="form-input" id="c-email" placeholder=" " required>
+                        <label class="form-label">FREQUENCY (EMAIL)</label>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea class="form-input" id="c-msg" rows="3" placeholder=" " required></textarea>
+                        <label class="form-label">TRANSMISSION (MESSAGE)</label>
+                    </div>
+
+                    <button type="submit" class="btn-submit">TRANSMIT SIGNAL</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <div id="footer-container"></div>
+    <script src="script.js"></script>
+    <script>
+        // Form Handling
+        document.getElementById('contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerText;
+
+            btn.innerText = 'TRANSMITTING...';
+            btn.style.opacity = '0.7';
+
+            setTimeout(() => {
+                btn.innerText = 'SIGNAL RECEIVED';
+                btn.style.background = '#00ff00';
+                // Reset
+                setTimeout(() => {
+                    e.target.reset();
+                    btn.innerText = originalText;
+                    btn.style.background = '';
+                    btn.style.opacity = '1';
+                }, 2000);
+            }, 1500);
+        });
+    </script>
+</body>
+
+</html>

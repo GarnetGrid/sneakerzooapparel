@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNEAKER ZOO // PROTOCOL</title>
+    <meta name="description" content="Operational protocols, shipping logistics, and authentication standards.">
+
+    <!-- Fonts & Styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&family=Syne:wght@400;700;800&family=Syncopate:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .faq-wrapper {
+            max-width: 800px;
+            margin: 6rem auto;
+            padding: 0 2rem;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .faq_title {
+            font-family: 'Syncopate', sans-serif;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            padding: 1.5rem 0;
+            color: var(--text-primary);
+            font-family: 'Syne', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: var(--accent);
+        }
+
+        .faq-question::after {
+            content: '+';
+            font-family: 'Syncopate', sans-serif;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-question::after {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            color: var(--text-secondary);
+            line-height: 1.6;
+            padding-right: 2rem;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            /* Approximate max height */
+            padding-bottom: 1.5rem;
+        }
+
+        /* Support Grid */
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .support-card {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .support-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: var(--hologram);
+        }
+
+        .icon-box {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+    </style>
+</head>
+
+<body class="loading">
+    <div class="noise-overlay"></div>
+    <div id="header-container"></div>
+
+    <main>
+        <div class="faq-wrapper">
+            <header class="faq-header">
+                <h1 class="faq_title">PROTOCOL <span style="color:var(--accent)">FAQ</span></h1>
+                <p>Common inquiries regarding the acquisition of kinetic assets.</p>
+            </header>
+
+            <div class="faq-list">
+                <!-- 1 -->
+                <div class="faq-item">
+                    <button class="faq-question">Are these authentic?</button>
+                    <div class="faq-answer">
+                        <p>Observation absolute. Every item is verified by our proprietory 3-stage authentication
+                            process, including UV spectrography and material density analysis.</p>
+                    </div>
+                </div>
+
+                <!-- 2 -->
+                <div class="faq-item">
+                    <button class="faq-question">What is "Kinetic" shipping?</button>
+                    <div class="faq-answer">
+                        <p>We use expedited courier networks. Domestic orders arrive within 48-72 hours. International
+                            secure transport takes 5-7 business days.</p>
+                    </div>
+                </div>
+
+                <!-- 3 -->
+                <div class="faq-item">
+                    <button class="faq-question">Can I return an item?</button>
+                    <div class="faq-answer">
+                        <p>We accept returns on "deadstock" items within 14 days, provided the verification tag remains
+                            intact. Once the tag is broken, the asset is yours forever.</p>
+                    </div>
+                </div>
+                <!-- 4 -->
+                <div class="faq-item">
+                    <button class="faq-question">Do you accept Crypto?</button>
+                    <div class="faq-answer">
+                        <p>Currently, we process payments via Stripe (Credit/Debit) and Apple Pay. Blockchain
+                            integration is on the Phase 4 roadmap.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="support-grid">
+            <div class="support-card">
+                <div class="icon-box">✉️</div>
+                <h3>EMAIL INTEL</h3>
+                <p>support@sneakerzoo.com</p>
+            </div>
+            <div class="support-card">
+                <div class="icon-box">💬</div>
+                <h3>LIVE SIGNAL</h3>
+                <p>Available 09:00 - 18:00 EST</p>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="footer-container"></div>
+    <script src="script.js"></script>
+    <script>
+        // Local script for accordion logic
+        document.querySelectorAll('.faq-question').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const item = btn.parentElement;
+                // Close others
+                document.querySelectorAll('.faq-item').forEach(i => {
+                    if (i !== item) i.classList.remove('active');
+                });
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+
+</html>

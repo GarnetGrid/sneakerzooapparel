@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://sneakerzooapparel.com/sitemap.xml

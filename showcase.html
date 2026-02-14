@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNEAKER ZOO // ARCHIVE</title>
+    <meta name="description" content="Browse the complete Sneaker Zoo archive. Rare, deadstock, and kinetic footwear.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <header id="bespoke-header"
+        style="position: fixed; top: 0; width: 100%; padding: 2rem; z-index: 100; display: flex; justify-content: space-between;">
+        <a href="index.html" class="brand"
+            style="font-family: var(--font-head); font-weight: 800; font-size: 1.5rem;">SZ®</a>
+        <nav>
+            <span class="btn-magnet" style="border: none; padding: 0;">CART [0]</span>
+        </nav>
+    </header>
+
+    <main style="padding-top: 15vh;">
+        <h2 class="text-center" style="font-size: 8vw; margin-bottom: 5vh;">THE ARCHIVE</h2>
+
+        <!-- FILTER UI -->
+        <div class="filter-bar"
+            style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 3rem; font-family: var(--font-mono);">
+            <button class="filter-btn active" data-filter="ALL"
+                style="background: none; border: none; color: var(--hologram); cursor: pointer; text-transform: uppercase;">ALL</button>
+            <button class="filter-btn" data-filter="FOOTWEAR"
+                style="background: none; border: none; color: var(--void); -webkit-text-stroke: 1px var(--hologram); cursor: pointer; text-transform: uppercase;">FOOTWEAR</button>
+            <button class="filter-btn" data-filter="APPAREL"
+                style="background: none; border: none; color: var(--void); -webkit-text-stroke: 1px var(--hologram); cursor: pointer; text-transform: uppercase;">APPAREL</button>
+            <button class="filter-btn" data-filter="OBJECTS"
+                style="background: none; border: none; color: var(--void); -webkit-text-stroke: 1px var(--hologram); cursor: pointer; text-transform: uppercase;">OBJECTS</button>
+        </div>
+
+        <!-- CUSTOM GRID (DYNAMIC) -->
+        <div id="showcase-grid" class="grid-base"
+            style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); min-height: 50vh;">
+            <!-- INJECTED BY JS -->
+        </div>
+    </main>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

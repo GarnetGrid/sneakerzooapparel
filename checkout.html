@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNEAKER ZOO // CHECKOUT</title>
+    <meta name="description" content="Secure checkout terminal. Acquire your kinetic assets.">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+
+<body>
+    <!-- DYNAMIC HEADER INJECTED BY JS -->
+
+    <main class="grid-container" style="padding-top: 8rem;">
+
+        <!-- LEFT COL: MANIFEST (CART) -->
+        <div style="grid-column: 2 / span 5;">
+            <h3 class="chapter-title">MANIFEST</h3>
+
+            <!-- Dynamic Cart Container -->
+            <div id="cart-items" style="margin-top: 2rem; min-height: 200px;">
+                <p style="font-family: var(--font-mono); opacity: 0.5;">LOADING MANIFEST...</p>
+            </div>
+
+            <!-- Totals -->
+            <div
+                style="margin-top: 4rem; font-family: var(--font-mono); font-size: 1.5rem; border-top: 1px solid var(--text); padding-top: 1rem;">
+                <div
+                    style="display: flex; justify-content: space-between; font-size: 1rem; margin-bottom: 0.5rem; opacity: 0.7;">
+                    <span>SUBTOTAL</span>
+                    <span id="cart-subtotal">$0.00</span>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <span>TOTAL</span>
+                    <span id="cart-total">$0.00</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT COL: PROTOCOL (CHECKOUT FORM) -->
+        <div style="grid-column: 8 / span 4;">
+            <h3 class="chapter-title">PROTOCOL</h3>
+
+            <form id="checkout-form" style="display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem;">
+                <input type="text" placeholder="FULL NAME" required
+                    style="background: transparent; border: none; border-bottom: 1px solid var(--text); color: var(--text); padding: 1rem 0; font-family: var(--font-mono); outline: none;">
+                <input type="text" placeholder="SHIPPING COORDINATES" required
+                    style="background: transparent; border: none; border-bottom: 1px solid var(--text); color: var(--text); padding: 1rem 0; font-family: var(--font-mono); outline: none;">
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <input type="text" placeholder="CREDIT CARD" required
+                        style="background: transparent; border: none; border-bottom: 1px solid var(--text); color: var(--text); padding: 1rem 0; font-family: var(--font-mono); outline: none;">
+                    <input type="text" placeholder="MM/YY / CVV" required
+                        style="background: transparent; border: none; border-bottom: 1px solid var(--text); color: var(--text); padding: 1rem 0; font-family: var(--font-mono); outline: none;">
+                </div>
+
+                <button type="submit" class="btn-gallery full-width"
+                    style="margin-top: 2rem; background: var(--text); color: var(--bg); border: none;">INITIATE
+                    TRANSFER</button>
+            </form>
+        </div>
+
+    </main>
+
+    <!-- Global App Scripts -->
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

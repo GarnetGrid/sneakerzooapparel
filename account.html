@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNEAKER ZOO // ACCESS</title>
+    <meta name="description" content="Member access portal. Manage your profile and view order history.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- HEADER INJECTED BY JS -->
+
+    <main class="grid-container" style="padding-top: 8rem; min-height: 80vh;">
+
+        <!-- LEFT: LOGIN -->
+        <div style="grid-column: 2 / span 4;">
+            <h3 class="chapter-title">IDENTIFY</h3>
+            <p style="font-family: var(--font-body); opacity: 0.7; margin-bottom: 2rem;">
+                ACCESS ARCHIVES // CLIENT PORTAL
+            </p>
+
+            <form id="login-form" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <input type="text" id="login-user" placeholder="CODENAME" required
+                    style="background: transparent; border: none; border-bottom: 1px solid var(--text); color: var(--text); padding: 1rem 0; font-family: var(--font-mono); outline: none;">
+
+                <input type="password" id="login-pass" placeholder="PASSPHRASE" required
+                    style="background: transparent; border: none; border-bottom: 1px solid var(--text); color: var(--text); padding: 1rem 0; font-family: var(--font-mono); outline: none;">
+
+                <button type="submit" class="btn-magnet"
+                    style="margin-top: 1rem; padding: 1rem; background: var(--text); color: var(--bg); border: none;">
+                    ESTABLISH LINK
+                </button>
+            </form>
+        </div>
+
+        <!-- RIGHT: REGISTER -->
+        <div style="grid-column: 7 / span 4;">
+            <h3 class="chapter-title">INITIATE</h3>
+            <p style="font-family: var(--font-body); opacity: 0.7; margin-bottom: 2rem;">
+                NEW PROTOCOL // CREATE IDENTITY
+            </p>
+
+            <form id="register-form" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <input type="text" id="reg-user" placeholder="ASSIGN CODENAME" required
+                    style="background: transparent; border: none; border-bottom: 1px solid var(--text); color: var(--text); padding: 1rem 0; font-family: var(--font-mono); outline: none;">
+
+                <input type="email" id="reg-email" placeholder="CABLE ADDRESS (EMAIL)" required
+                    style="background: transparent; border: none; border-bottom: 1px solid var(--text); color: var(--text); padding: 1rem 0; font-family: var(--font-mono); outline: none;">
+
+                <button type="submit" class="btn-gallery full-width" style="margin-top: 1rem;">
+                    GENERATE PROFILE
+                </button>
+            </form>
+        </div>
+
+        <!-- DASHBOARD (Hidden by Default) -->
+        <div id="account-dashboard" style="grid-column: 2 / span 10; display: none;">
+            <div
+                style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; border-bottom: 1px solid var(--line); padding-bottom: 1rem;">
+                <div>
+                    <h2 class="display-text" id="user-greeting">WELCOME BACK</h2>
+                    <p style="font-family: var(--font-mono); color: var(--text-muted);">MEMBER SINCE 2026 // TIER 1</p>
+                </div>
+                <button onclick="window.app.authManager.logout()" class="btn-magnet"
+                    style="padding: 1rem 2rem; background: var(--error); color: white; border: none;">
+                    TERMINATE SESSION
+                </button>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <!-- Recent Orders -->
+                <div>
+                    <h3 class="chapter-title">TRANSACTION LOG</h3>
+                    <div id="order-history"
+                        style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem;">
+                        <!-- Injected by JS -->
+                    </div>
+                </div>
+
+                <!-- Account Text -->
+                <div>
+                    <h3 class="chapter-title">STATUS</h3>
+                    <div class="card-glass" style="padding: 2rem;">
+                        <p style="margin-bottom: 1rem;"><strong>ACCESS LEVEL:</strong> OMEGA</p>
+                        <p style="margin-bottom: 1rem;"><strong>CREDITS:</strong> 0.00 SZ</p>
+                        <p style="opacity: 0.6; font-size: 0.8rem;">
+                            Your account is active. Exclusive drops will be signaled via local toast notifications.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Global App Scripts -->
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
