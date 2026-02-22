@@ -437,7 +437,7 @@ class App {
             <div class="footer-bottom">
                 © 2026 SNEAKER ZOO & APPAREL // ALL RIGHTS RESERVED // SNEAKERZOOAPPAREL.COM
                 <a href="https://garnetgrid.com" target="_blank" rel="noopener" class="garnetgrid-badge" title="Built by GarnetGrid">
-                    <svg class="gem-icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <svg class="gem-icon" viewBox="0 0 24 24" width="14" height="14" style="width:14px;height:14px;min-width:14px" aria-hidden="true">
                         <defs>
                             <linearGradient id="gf1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#9b1b30"/><stop offset="100%" stop-color="#d4374a"/></linearGradient>
                             <linearGradient id="gf2" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#e63946"/><stop offset="100%" stop-color="#7a1525"/></linearGradient>
