@@ -436,6 +436,40 @@ class App {
             </div>
             <div class="footer-bottom">
                 © 2026 SNEAKER ZOO & APPAREL // ALL RIGHTS RESERVED // SNEAKERZOOAPPAREL.COM
+                <a href="https://garnetgrid.com" target="_blank" rel="noopener" class="garnetgrid-badge" title="Built by GarnetGrid">
+                    <svg class="gem-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="gf1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#9b1b30"/><stop offset="100%" stop-color="#d4374a"/></linearGradient>
+                            <linearGradient id="gf2" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#e63946"/><stop offset="100%" stop-color="#7a1525"/></linearGradient>
+                            <linearGradient id="gf3" x1="50%" y1="0%" x2="50%" y2="100%"><stop offset="0%" stop-color="#ff6b6b"/><stop offset="100%" stop-color="#c0392b"/></linearGradient>
+                            <linearGradient id="gs" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="white" stop-opacity=".8"/><stop offset="100%" stop-color="white" stop-opacity="0"/></linearGradient>
+                        </defs>
+                        <style>
+                            @keyframes facet-shimmer{0%,100%{opacity:0}15%{opacity:.9}30%{opacity:0}}
+                            @keyframes gem-rotate{0%,100%{transform:rotate(0) scale(1)}25%{transform:rotate(3deg) scale(1.02)}75%{transform:rotate(-3deg) scale(1.02)}}
+                            @keyframes sparkle-pop{0%,100%{opacity:0;transform:scale(0)}50%{opacity:1;transform:scale(1)}}
+                            .gb{transform-origin:12px 12px;animation:gem-rotate 4s ease-in-out infinite}
+                            .sh1{animation:facet-shimmer 3s ease-in-out infinite}
+                            .sh2{animation:facet-shimmer 3s ease-in-out infinite;animation-delay:1s}
+                            .sh3{animation:facet-shimmer 3s ease-in-out infinite;animation-delay:2s}
+                            .sk{transform-origin:center;animation:sparkle-pop 2.5s ease-in-out infinite}
+                            .sk:nth-child(2){animation-delay:.8s}.sk:nth-child(3){animation-delay:1.6s}
+                        </style>
+                        <g class="gb">
+                            <polygon points="12,22 4,10 20,10" fill="url(#gf1)"/>
+                            <polygon points="4,10 8,3 12,6 12,10" fill="url(#gf2)"/>
+                            <polygon points="20,10 16,3 12,6 12,10" fill="url(#gf3)"/>
+                            <polygon points="8,3 12,1.5 16,3 12,6" fill="#e63946"/>
+                            <polygon points="4,10 12,10 12,22" fill="url(#gf2)" opacity=".7"/>
+                            <polygon points="20,10 12,10 12,22" fill="url(#gf1)" opacity=".8"/>
+                            <polygon class="sh1" points="4,10 12,10 12,22" fill="url(#gs)" opacity="0"/>
+                            <polygon class="sh2" points="20,10 12,10 12,22" fill="url(#gs)" opacity="0"/>
+                            <polygon class="sh3" points="8,3 12,1.5 16,3 12,6" fill="url(#gs)" opacity="0"/>
+                        </g>
+                        <g><circle class="sk" cx="3" cy="5" r=".8" fill="white" opacity="0"/><circle class="sk" cx="21" cy="4" r=".6" fill="white" opacity="0"/><circle class="sk" cx="22" cy="16" r=".7" fill="white" opacity="0"/></g>
+                    </svg>
+                    BUILT BY <span>GARNETGRID</span>
+                </a>
             </div>
         </footer>`;
     }

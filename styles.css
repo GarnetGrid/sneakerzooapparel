@@ -1429,6 +1429,49 @@ p {
     font-size: 0.6rem;
     letter-spacing: 0.15em;
     color: var(--text-muted);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+/* GarnetGrid Signature Badge */
+.garnetgrid-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--text-muted);
+    font-family: var(--font-cyber);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    padding: 0.3rem 0.6rem;
+    border-radius: 3px;
+    border: 1px solid transparent;
+}
+
+.garnetgrid-badge:hover {
+    color: var(--text-primary);
+    border-color: rgba(155, 27, 48, 0.4);
+    background: rgba(155, 27, 48, 0.08);
+}
+
+.garnetgrid-badge .gem-icon {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+}
+
+.garnetgrid-badge span {
+    font-weight: 600;
+    color: #9b1b30;
+    transition: color 0.3s ease;
+}
+
+.garnetgrid-badge:hover span {
+    color: #e63946;
 }
 
 /* ═══════════════════════════════════════════════
