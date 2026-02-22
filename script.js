@@ -269,15 +269,31 @@ class App {
             });
         }
 
-        // SZ Logo particle system
+        // SZ Logo particle system — orbiting + hover burst
         const szWrap = header.querySelector('.sz-logo-wrap');
         const szCanvas = header.querySelector('.sz-particles');
         if (szWrap && szCanvas) {
+            szCanvas.width = 120;
+            szCanvas.height = 100;
             const ctx = szCanvas.getContext('2d');
-            let particles = [];
-            let animFrame = null;
+            let burstParticles = [];
+            const cx = szCanvas.width / 2;
+            const cy = szCanvas.height / 2;
 
-            class Particle {
+            // Orbiting particles — always visible
+            const orbitColors = ['#ff2d2d', '#ff6b1a', '#ff0080', '#00e5ff', '#ffffff'];
+            const orbiters = orbitColors.map((color, i) => ({
+                angle: (Math.PI * 2 / orbitColors.length) * i,
+                speed: 0.008 + Math.random() * 0.006,
+                rx: 28 + Math.random() * 14,
+                ry: 18 + Math.random() * 10,
+                size: 1.2 + Math.random() * 1,
+                color,
+                phase: Math.random() * Math.PI * 2
+            }));
+
+            // Burst particles (on hover)
+            class BurstParticle {
                 constructor(x, y) {
                     this.x = x;
                     this.y = y;
@@ -288,54 +304,64 @@ class App {
                     this.life = 1;
                     this.decay = Math.random() * 0.03 + 0.015;
                     this.size = Math.random() * 2.5 + 0.5;
-                    const colors = ['#ff2d2d', '#ff6b1a', '#ff0080', '#00e5ff', '#ffffff'];
-                    this.color = colors[Math.floor(Math.random() * colors.length)];
+                    this.color = orbitColors[Math.floor(Math.random() * orbitColors.length)];
                 }
                 update() {
                     this.x += this.vx;
                     this.y += this.vy;
-                    this.vy += 0.04; // micro gravity
+                    this.vy += 0.04;
                     this.vx *= 0.99;
                     this.life -= this.decay;
                 }
-                draw(ctx) {
-                    ctx.globalAlpha = this.life;
-                    ctx.fillStyle = this.color;
-                    ctx.shadowColor = this.color;
-                    ctx.shadowBlur = 6;
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size * this.life, 0, Math.PI * 2);
-                    ctx.fill();
+                draw(c) {
+                    c.globalAlpha = this.life;
+                    c.fillStyle = this.color;
+                    c.shadowColor = this.color;
+                    c.shadowBlur = 6;
+                    c.beginPath();
+                    c.arc(this.x, this.y, this.size * this.life, 0, Math.PI * 2);
+                    c.fill();
                 }
             }
 
             function spawnBurst() {
-                const cx = szCanvas.width / 2;
-                const cy = szCanvas.height / 2;
                 for (let i = 0; i < 18; i++) {
-                    particles.push(new Particle(cx, cy));
+                    burstParticles.push(new BurstParticle(cx, cy));
                 }
             }
 
-            function animate() {
+            function draw() {
                 ctx.clearRect(0, 0, szCanvas.width, szCanvas.height);
-                particles = particles.filter(p => p.life > 0);
-                particles.forEach(p => { p.update(); p.draw(ctx); });
+
+                // Draw orbiting particles
+                orbiters.forEach(o => {
+                    o.angle += o.speed;
+                    const x = cx + Math.cos(o.angle + o.phase) * o.rx;
+                    const y = cy + Math.sin(o.angle + o.phase) * o.ry;
+                    const pulse = 0.6 + 0.4 * Math.sin(o.angle * 3);
+                    ctx.globalAlpha = pulse;
+                    ctx.fillStyle = o.color;
+                    ctx.shadowColor = o.color;
+                    ctx.shadowBlur = 8;
+                    ctx.beginPath();
+                    ctx.arc(x, y, o.size * pulse, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+
+                // Draw burst particles
+                burstParticles = burstParticles.filter(p => p.life > 0);
+                burstParticles.forEach(p => { p.update(); p.draw(ctx); });
+
                 ctx.globalAlpha = 1;
                 ctx.shadowBlur = 0;
-                if (particles.length > 0) {
-                    animFrame = requestAnimationFrame(animate);
-                } else {
-                    animFrame = null;
-                }
+                requestAnimationFrame(draw);
             }
+
+            draw(); // start immediately — orbits are always on
 
             szWrap.addEventListener('mouseenter', () => {
                 spawnBurst();
-                if (!animFrame) animate();
             });
-
-
         }
     }
 
