@@ -1295,56 +1295,34 @@ p {
     }
 }
 
-/* ── Hover: explosion burst + neon glow ── */
+/* ── Hover: smooth scale-up + neon bloom ── */
+.sz-brand .sz-logo {
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.4s ease;
+}
+
 .sz-brand:hover .sz-logo {
-    filter: drop-shadow(0 0 18px rgba(255, 45, 45, 0.6)) drop-shadow(0 0 40px rgba(255, 0, 128, 0.2));
-    animation: sz-glitch 0.3s ease;
+    transform: scale(1.12);
+    filter: drop-shadow(0 0 18px rgba(255, 45, 45, 0.6)) drop-shadow(0 0 40px rgba(255, 0, 128, 0.25));
 }
 
 .sz-brand:hover .sz-sole {
-    transform: translateY(5px) scaleX(1.03);
-    transition: transform 0.3s var(--ease-spring);
+    transform: translateY(3px) scaleX(1.02);
+    transition: transform 0.35s var(--ease-spring);
 }
 
 .sz-brand:hover .sz-upper {
-    transform: translate(-3px, -6px) rotate(4deg);
-    transition: transform 0.3s var(--ease-spring);
+    transform: translate(-2px, -4px) rotate(2deg);
+    transition: transform 0.35s var(--ease-spring);
 }
 
 .sz-brand:hover .sz-collar {
-    transform: translate(0, -8px);
-    transition: transform 0.25s var(--ease-spring);
+    transform: translate(0, -5px);
+    transition: transform 0.3s var(--ease-spring);
 }
 
 .sz-brand:hover .sz-stripe {
     stroke-width: 7;
-    transition: stroke-width 0.2s ease;
-}
-
-@keyframes sz-glitch {
-    0% {
-        transform: translate(0, 0);
-    }
-
-    20% {
-        transform: translate(-3px, 2px);
-    }
-
-    40% {
-        transform: translate(3px, -2px);
-    }
-
-    60% {
-        transform: translate(-2px, -1px);
-    }
-
-    80% {
-        transform: translate(2px, 1px);
-    }
-
-    100% {
-        transform: translate(0, 0);
-    }
+    transition: stroke-width 0.3s ease;
 }
 
 /* ── Ambient neon pulse ── */
