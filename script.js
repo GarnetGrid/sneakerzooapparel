@@ -273,21 +273,21 @@ class App {
         const szWrap = header.querySelector('.sz-logo-wrap');
         const szCanvas = header.querySelector('.sz-particles');
         if (szWrap && szCanvas) {
-            szCanvas.width = 120;
-            szCanvas.height = 100;
+            szCanvas.width = 160;
+            szCanvas.height = 130;
             const ctx = szCanvas.getContext('2d');
             let burstParticles = [];
             const cx = szCanvas.width / 2;
             const cy = szCanvas.height / 2;
 
-            // Orbiting particles — always visible
-            const orbitColors = ['#ff2d2d', '#ff6b1a', '#ff0080', '#00e5ff', '#ffffff'];
+            // Orbiting particles — always visible, orbiting the whole logo
+            const orbitColors = ['#ff2d2d', '#ff6b1a', '#ff0080', '#00e5ff', '#ffffff', '#ff2d2d', '#00e5ff', '#ff6b1a'];
             const orbiters = orbitColors.map((color, i) => ({
                 angle: (Math.PI * 2 / orbitColors.length) * i,
-                speed: 0.008 + Math.random() * 0.006,
-                rx: 28 + Math.random() * 14,
-                ry: 18 + Math.random() * 10,
-                size: 1.2 + Math.random() * 1,
+                speed: 0.006 + Math.random() * 0.008,
+                rx: 45 + Math.random() * 25,
+                ry: 30 + Math.random() * 18,
+                size: 1 + Math.random() * 1.2,
                 color,
                 phase: Math.random() * Math.PI * 2
             }));

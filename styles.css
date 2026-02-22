@@ -1148,8 +1148,8 @@ p {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 120px;
-    height: 100px;
+    width: 160px;
+    height: 130px;
     pointer-events: none;
     z-index: 1;
 }
@@ -1295,34 +1295,50 @@ p {
     }
 }
 
-/* ── Hover: smooth scale-up + neon bloom ── */
+/* ── Hover: explode into pieces + neon bloom ── */
 .sz-brand .sz-logo {
-    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.4s ease;
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.5s ease;
+}
+
+.sz-brand .sz-part {
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
 }
 
 .sz-brand:hover .sz-logo {
-    transform: scale(1.12);
-    filter: drop-shadow(0 0 18px rgba(255, 45, 45, 0.6)) drop-shadow(0 0 40px rgba(255, 0, 128, 0.25));
+    filter: drop-shadow(0 0 22px rgba(255, 45, 45, 0.7)) drop-shadow(0 0 50px rgba(255, 0, 128, 0.3));
 }
 
 .sz-brand:hover .sz-sole {
-    transform: translateY(3px) scaleX(1.02);
-    transition: transform 0.35s var(--ease-spring);
+    transform: translate(15px, 18px) rotate(12deg) scale(0.9);
 }
 
 .sz-brand:hover .sz-upper {
-    transform: translate(-2px, -4px) rotate(2deg);
-    transition: transform 0.35s var(--ease-spring);
+    transform: translate(-12px, -16px) rotate(-8deg) scale(0.92);
+}
+
+.sz-brand:hover .sz-toe {
+    transform: translate(-18px, 12px) rotate(15deg) scale(0.88);
 }
 
 .sz-brand:hover .sz-collar {
-    transform: translate(0, -5px);
-    transition: transform 0.3s var(--ease-spring);
+    transform: translate(8px, -22px) rotate(-18deg) scale(0.85);
 }
 
 .sz-brand:hover .sz-stripe {
     stroke-width: 7;
-    transition: stroke-width 0.3s ease;
+    opacity: 0.6;
+    transition: stroke-width 0.3s ease, opacity 0.3s ease;
+}
+
+.sz-brand:hover .sz-stitch {
+    opacity: 0.3;
+    transition: opacity 0.3s ease;
+}
+
+.sz-brand:hover .sz-laces,
+.sz-brand:hover .sz-treads {
+    opacity: 0 !important;
+    transition: opacity 0.2s ease;
 }
 
 /* ── Ambient neon pulse ── */
