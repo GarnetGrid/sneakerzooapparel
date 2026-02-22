@@ -1153,7 +1153,7 @@ p {
 }
 
 /* ═══════════════════════════════════════════════
-   SZ ANIMATED MONOGRAM LOGO
+   ANIMATED SNEAKER LOGO
    ═══════════════════════════════════════════════ */
 .sz-brand {
     text-decoration: none;
@@ -1161,13 +1161,14 @@ p {
 
 .sz-logo-wrap {
     position: relative;
-    width: 44px;
-    height: 36px;
+    width: 48px;
+    height: 40px;
     cursor: pointer;
 }
 
 .sz-logo {
     display: block;
+    overflow: visible;
     transition: filter 0.4s ease;
 }
 
@@ -1182,65 +1183,111 @@ p {
     z-index: 1;
 }
 
-/* ── Stroke draw-on animation ── */
-.sz-letter {
-    stroke-dasharray: 400;
-    stroke-dashoffset: 400;
-    animation: sz-draw 1.8s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+/* ── Filled parts: scale+fade reveal ── */
+.sz-part {
+    opacity: 0;
+    transform-origin: center bottom;
+    animation: sz-reveal 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
-.sz-s {
-    animation-delay: 0.2s;
+.sz-sole {
+    animation-delay: 0.1s;
+    transform-origin: center bottom;
 }
 
-.sz-z {
-    animation-delay: 0.5s;
+.sz-upper {
+    animation-delay: 0.3s;
+    transform-origin: bottom center;
 }
 
-@keyframes sz-draw {
-    to {
+.sz-toe {
+    animation-delay: 0.45s;
+    transform-origin: bottom left;
+}
+
+.sz-collar {
+    animation-delay: 0.55s;
+    transform-origin: bottom center;
+}
+
+.sz-stitch {
+    animation-delay: 0.7s;
+}
+
+@keyframes sz-reveal {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(5px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* ── Red stripe: stroke draw-on ── */
+.sz-stripe {
+    opacity: 0;
+    stroke-dasharray: 300;
+    stroke-dashoffset: 300;
+    animation: sz-stripe-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.7s forwards;
+}
+
+@keyframes sz-stripe-in {
+    0% {
+        opacity: 1;
+        stroke-dashoffset: 300;
+    }
+
+    100% {
+        opacity: 1;
         stroke-dashoffset: 0;
     }
 }
 
-/* ── Red slash draw-on ── */
-.sz-slash {
-    stroke-dasharray: 120;
-    stroke-dashoffset: 120;
-    animation: sz-slash-draw 0.6s cubic-bezier(0.22, 1, 0.36, 1) 1.2s forwards;
+/* ── Laces + treads fade ── */
+.sz-laces {
+    opacity: 0;
+    animation: sz-fade-in 0.4s ease 1.2s forwards;
 }
 
-@keyframes sz-slash-draw {
+.sz-treads {
+    opacity: 0;
+    animation: sz-fade-in 0.3s ease 1.4s forwards;
+}
+
+@keyframes sz-fade-in {
     to {
-        stroke-dashoffset: 0;
+        opacity: 0.6;
     }
 }
 
-/* ── Corner dots fade + orbit ── */
+/* ── Eyelet dots pulse ── */
 .sz-dot {
     opacity: 0;
-    animation: sz-dot-in 0.3s ease forwards, sz-dot-pulse 3s ease-in-out infinite;
+    animation: sz-dot-in 0.25s ease forwards, sz-dot-pulse 2.5s ease-in-out infinite;
 }
 
 .sz-dot-1 {
-    animation-delay: 1.6s, 1.6s;
+    animation-delay: 0.9s, 0.9s;
 }
 
 .sz-dot-2 {
-    animation-delay: 1.7s, 1.7s;
+    animation-delay: 1.0s, 1.0s;
 }
 
 .sz-dot-3 {
-    animation-delay: 1.8s, 1.8s;
+    animation-delay: 1.1s, 1.1s;
 }
 
 .sz-dot-4 {
-    animation-delay: 1.9s, 1.9s;
+    animation-delay: 1.2s, 1.2s;
 }
 
 @keyframes sz-dot-in {
     to {
-        opacity: 0.8;
+        opacity: 0.9;
     }
 }
 
@@ -1248,29 +1295,39 @@ p {
 
     0%,
     100% {
-        r: 2;
-        opacity: 0.6;
+        r: 3;
+        opacity: 0.7;
     }
 
     50% {
-        r: 3.5;
+        r: 4;
         opacity: 1;
     }
 }
 
-/* ── Hover: glow + glitch ── */
+/* ── Hover: kick apart + glow ── */
 .sz-brand:hover .sz-logo {
-    filter: drop-shadow(0 0 12px rgba(255, 45, 45, 0.6)) drop-shadow(0 0 30px rgba(255, 45, 45, 0.2));
+    filter: drop-shadow(0 0 14px rgba(255, 45, 45, 0.5)) drop-shadow(0 0 30px rgba(255, 45, 45, 0.15));
     animation: sz-glitch 0.3s ease;
 }
 
-.sz-brand:hover .sz-letter {
-    stroke: #ffffff;
-    transition: stroke 0.3s ease;
+.sz-brand:hover .sz-sole {
+    transform: translateY(4px);
+    transition: transform 0.35s var(--ease-spring);
 }
 
-.sz-brand:hover .sz-slash {
-    stroke-width: 4;
+.sz-brand:hover .sz-upper {
+    transform: translate(-2px, -5px) rotate(3deg);
+    transition: transform 0.35s var(--ease-spring);
+}
+
+.sz-brand:hover .sz-collar {
+    transform: translate(0, -6px);
+    transition: transform 0.3s var(--ease-spring);
+}
+
+.sz-brand:hover .sz-stripe {
+    stroke-width: 6;
     transition: stroke-width 0.2s ease;
 }
 
@@ -1302,18 +1359,18 @@ p {
 
 /* ── Ambient glow pulse ── */
 .sz-logo {
-    animation: sz-ambient 4s ease-in-out infinite 2.5s;
+    animation: sz-ambient 4s ease-in-out infinite 2s;
 }
 
 @keyframes sz-ambient {
 
     0%,
     100% {
-        filter: drop-shadow(0 0 4px rgba(255, 45, 45, 0.15));
+        filter: drop-shadow(0 0 3px rgba(255, 45, 45, 0.1));
     }
 
     50% {
-        filter: drop-shadow(0 0 10px rgba(255, 45, 45, 0.35));
+        filter: drop-shadow(0 0 8px rgba(255, 45, 45, 0.28));
     }
 }
 

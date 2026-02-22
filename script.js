@@ -217,28 +217,49 @@ class App {
         header.innerHTML = `
         <a href="index.html" class="brand sz-brand" aria-label="Sneaker Zoo Home">
             <div class="sz-logo-wrap">
-                <svg class="sz-logo" width="44" height="36" viewBox="0 0 120 100" aria-hidden="true">
+                <svg class="sz-logo" width="48" height="40" viewBox="0 0 200 170" aria-hidden="true">
                     <defs>
                         <filter id="sz-glow">
-                            <feGaussianBlur stdDeviation="3" result="blur"/>
+                            <feGaussianBlur stdDeviation="2" result="blur"/>
                             <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
                         </filter>
-                        <linearGradient id="sz-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stop-color="#ffffff"/>
-                            <stop offset="100%" stop-color="#888888"/>
-                        </linearGradient>
                     </defs>
-                    <!-- S letter path -->
-                    <path class="sz-letter sz-s" d="M15 30 Q15 15 35 15 L55 15 Q70 15 70 30 Q70 45 55 45 L35 55 Q15 55 15 70 Q15 85 35 85 L55 85 Q70 85 70 70" fill="none" stroke="url(#sz-grad)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" filter="url(#sz-glow)"/>
-                    <!-- Z letter path -->
-                    <path class="sz-letter sz-z" d="M50 15 L105 15 L50 85 L105 85" fill="none" stroke="url(#sz-grad)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" filter="url(#sz-glow)"/>
-                    <!-- Diagonal slash accent -->
-                    <line class="sz-slash" x1="30" y1="90" x2="90" y2="10" stroke="#ff2d2d" stroke-width="3" stroke-linecap="round" filter="url(#sz-glow)"/>
-                    <!-- Corner dots -->
-                    <circle class="sz-dot sz-dot-1" cx="10" cy="10" r="2" fill="#ff2d2d" opacity="0.6"/>
-                    <circle class="sz-dot sz-dot-2" cx="110" cy="10" r="2" fill="#ff2d2d" opacity="0.6"/>
-                    <circle class="sz-dot sz-dot-3" cx="10" cy="90" r="2" fill="#ff2d2d" opacity="0.6"/>
-                    <circle class="sz-dot sz-dot-4" cx="110" cy="90" r="2" fill="#ff2d2d" opacity="0.6"/>
+                    <!-- Midsole + outsole block -->
+                    <path class="sz-part sz-sole" d="M20 130 L175 130 Q190 130 192 120 L192 115 Q192 112 188 112 L18 112 Q14 112 14 116 L14 124 Q14 130 20 130Z" fill="#2a2a2a" stroke="#444" stroke-width="1.5"/>
+                    <!-- Upper body -->
+                    <path class="sz-part sz-upper" d="M22 112 L22 70 Q22 40 50 25 Q65 18 80 18 L95 18 Q110 18 110 30 L110 50 Q150 45 175 55 Q192 62 192 80 L192 112Z" fill="#1a1a1a" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+                    <!-- Toe cap -->
+                    <path class="sz-part sz-toe" d="M22 112 L22 90 Q22 80 35 78 Q55 75 80 80 Q90 82 90 90 L90 112Z" fill="#222" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+                    <!-- Collar / ankle padding -->
+                    <path class="sz-part sz-collar" d="M95 18 Q88 10 95 5 Q110 -2 125 5 Q132 10 128 18 L110 30 Q100 22 95 18Z" fill="#252525" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                    <!-- Red accent stripe — the signature mark -->
+                    <path class="sz-part sz-stripe" d="M35 100 Q70 72 120 65 Q155 60 185 72" fill="none" stroke="#ff2d2d" stroke-width="4.5" stroke-linecap="round" filter="url(#sz-glow)"/>
+                    <!-- Stitching detail line -->
+                    <path class="sz-part sz-stitch" d="M92 112 L92 45" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="3 4"/>
+                    <!-- Eyelets -->
+                    <circle class="sz-dot sz-dot-1" cx="100" cy="35" r="3" fill="none" stroke="#ff2d2d" stroke-width="1.5" opacity="0"/>
+                    <circle class="sz-dot sz-dot-2" cx="100" cy="48" r="3" fill="none" stroke="#ff2d2d" stroke-width="1.5" opacity="0"/>
+                    <circle class="sz-dot sz-dot-3" cx="100" cy="61" r="3" fill="none" stroke="#ff2d2d" stroke-width="1.5" opacity="0"/>
+                    <circle class="sz-dot sz-dot-4" cx="100" cy="74" r="3" fill="none" stroke="#ff2d2d" stroke-width="1.5" opacity="0"/>
+                    <!-- Lace lines -->
+                    <g class="sz-laces" opacity="0">
+                        <line x1="100" y1="35" x2="115" y2="32" stroke="#666" stroke-width="1.2" stroke-linecap="round"/>
+                        <line x1="100" y1="48" x2="118" y2="44" stroke="#666" stroke-width="1.2" stroke-linecap="round"/>
+                        <line x1="100" y1="61" x2="120" y2="56" stroke="#666" stroke-width="1.2" stroke-linecap="round"/>
+                    </g>
+                    <!-- Sole tread accents -->
+                    <g class="sz-treads" opacity="0">
+                        <rect x="30" y="128" width="8" height="2" rx="1" fill="#444"/>
+                        <rect x="45" y="128" width="8" height="2" rx="1" fill="#444"/>
+                        <rect x="60" y="128" width="8" height="2" rx="1" fill="#444"/>
+                        <rect x="75" y="128" width="8" height="2" rx="1" fill="#444"/>
+                        <rect x="90" y="128" width="8" height="2" rx="1" fill="#444"/>
+                        <rect x="105" y="128" width="8" height="2" rx="1" fill="#444"/>
+                        <rect x="120" y="128" width="8" height="2" rx="1" fill="#444"/>
+                        <rect x="135" y="128" width="8" height="2" rx="1" fill="#444"/>
+                        <rect x="150" y="128" width="8" height="2" rx="1" fill="#444"/>
+                        <rect x="165" y="128" width="8" height="2" rx="1" fill="#444"/>
+                    </g>
                 </svg>
                 <canvas class="sz-particles" width="80" height="60"></canvas>
             </div>
