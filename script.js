@@ -122,7 +122,7 @@ class App {
         this.authManager = new AuthManager();
 
         this.initLoader();
-        this.initCursor();
+
         this.initHeader();
         this.initFooter();
         this.initScrollReveal();
@@ -151,58 +151,7 @@ class App {
         });
     }
 
-    // ─── CUSTOM CURSOR ─────────────────────────────────────────
-    initCursor() {
-        if (window.matchMedia('(pointer: coarse)').matches) return;
 
-        const dot = document.createElement('div');
-        dot.id = 'cursor-dot';
-        const ring = document.createElement('div');
-        ring.id = 'cursor-ring';
-
-        // Remove old cursors
-        document.querySelectorAll('#cursor-dot, #cursor-ring').forEach(el => el.remove());
-        document.body.appendChild(dot);
-        document.body.appendChild(ring);
-
-        let mouseX = 0, mouseY = 0;
-        let ringX = 0, ringY = 0;
-
-        document.addEventListener('mousemove', e => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-            dot.style.left = mouseX + 'px';
-            dot.style.top = mouseY + 'px';
-        });
-
-        const animate = () => {
-            ringX += (mouseX - ringX) * 0.15;
-            ringY += (mouseY - ringY) * 0.15;
-            ring.style.left = ringX + 'px';
-            ring.style.top = ringY + 'px';
-            requestAnimationFrame(animate);
-        };
-        animate();
-
-        // Magnetic buttons
-        document.addEventListener('mouseover', e => {
-            const link = e.target.closest('a, button, [onclick]');
-            if (link) {
-                ring.style.width = '60px';
-                ring.style.height = '60px';
-                ring.style.background = 'rgba(255, 255, 255, 0.04)';
-            }
-        });
-
-        document.addEventListener('mouseout', e => {
-            const link = e.target.closest('a, button, [onclick]');
-            if (link) {
-                ring.style.width = '40px';
-                ring.style.height = '40px';
-                ring.style.background = 'transparent';
-            }
-        });
-    }
 
     // ─── HEADER ────────────────────────────────────────────────
     initHeader() {
@@ -217,48 +166,69 @@ class App {
         header.innerHTML = `
         <a href="index.html" class="brand sz-brand" aria-label="Sneaker Zoo Home">
             <div class="sz-logo-wrap">
-                <svg class="sz-logo" width="48" height="40" viewBox="0 0 200 170" aria-hidden="true">
+                <svg class="sz-logo" width="52" height="44" viewBox="0 0 200 170" aria-hidden="true">
                     <defs>
+                        <linearGradient id="sole-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#ff2d2d"/>
+                            <stop offset="50%" stop-color="#ff6b1a"/>
+                            <stop offset="100%" stop-color="#ff2d2d"/>
+                        </linearGradient>
+                        <linearGradient id="upper-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#1a0a0a"/>
+                            <stop offset="40%" stop-color="#2a0f0f"/>
+                            <stop offset="100%" stop-color="#3d1515"/>
+                        </linearGradient>
+                        <linearGradient id="stripe-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#ff2d2d"/>
+                            <stop offset="50%" stop-color="#ff0080"/>
+                            <stop offset="100%" stop-color="#ff2d2d"/>
+                        </linearGradient>
                         <filter id="sz-glow">
-                            <feGaussianBlur stdDeviation="2" result="blur"/>
+                            <feGaussianBlur stdDeviation="3" result="blur"/>
                             <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
                         </filter>
+                        <filter id="sz-neon">
+                            <feGaussianBlur stdDeviation="2" result="blur"/>
+                            <feFlood flood-color="#ff2d2d" flood-opacity="0.4" result="color"/>
+                            <feComposite in="color" in2="blur" operator="in" result="glow"/>
+                            <feMerge><feMergeNode in="glow"/><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+                        </filter>
                     </defs>
-                    <!-- Midsole + outsole block -->
-                    <path class="sz-part sz-sole" d="M20 130 L175 130 Q190 130 192 120 L192 115 Q192 112 188 112 L18 112 Q14 112 14 116 L14 124 Q14 130 20 130Z" fill="#2a2a2a" stroke="#444" stroke-width="1.5"/>
-                    <!-- Upper body -->
-                    <path class="sz-part sz-upper" d="M22 112 L22 70 Q22 40 50 25 Q65 18 80 18 L95 18 Q110 18 110 30 L110 50 Q150 45 175 55 Q192 62 192 80 L192 112Z" fill="#1a1a1a" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
-                    <!-- Toe cap -->
-                    <path class="sz-part sz-toe" d="M22 112 L22 90 Q22 80 35 78 Q55 75 80 80 Q90 82 90 90 L90 112Z" fill="#222" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+                    <!-- Midsole + outsole — hot gradient -->
+                    <path class="sz-part sz-sole" d="M20 130 L175 130 Q190 130 192 120 L192 115 Q192 112 188 112 L18 112 Q14 112 14 116 L14 124 Q14 130 20 130Z" fill="url(#sole-grad)" stroke="#ff6b1a" stroke-width="1"/>
+                    <!-- Upper body — deep crimson gradient -->
+                    <path class="sz-part sz-upper" d="M22 112 L22 70 Q22 40 50 25 Q65 18 80 18 L95 18 Q110 18 110 30 L110 50 Q150 45 175 55 Q192 62 192 80 L192 112Z" fill="url(#upper-grad)" stroke="rgba(255,45,45,0.25)" stroke-width="1.5"/>
+                    <!-- Toe cap — slightly lighter -->
+                    <path class="sz-part sz-toe" d="M22 112 L22 90 Q22 80 35 78 Q55 75 80 80 Q90 82 90 90 L90 112Z" fill="#200e0e" stroke="rgba(255,45,45,0.15)" stroke-width="1"/>
                     <!-- Collar / ankle padding -->
-                    <path class="sz-part sz-collar" d="M95 18 Q88 10 95 5 Q110 -2 125 5 Q132 10 128 18 L110 30 Q100 22 95 18Z" fill="#252525" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-                    <!-- Red accent stripe — the signature mark -->
-                    <path class="sz-part sz-stripe" d="M35 100 Q70 72 120 65 Q155 60 185 72" fill="none" stroke="#ff2d2d" stroke-width="4.5" stroke-linecap="round" filter="url(#sz-glow)"/>
-                    <!-- Stitching detail line -->
-                    <path class="sz-part sz-stitch" d="M92 112 L92 45" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="3 4"/>
-                    <!-- Eyelets -->
-                    <circle class="sz-dot sz-dot-1" cx="100" cy="35" r="3" fill="none" stroke="#ff2d2d" stroke-width="1.5" opacity="0"/>
-                    <circle class="sz-dot sz-dot-2" cx="100" cy="48" r="3" fill="none" stroke="#ff2d2d" stroke-width="1.5" opacity="0"/>
-                    <circle class="sz-dot sz-dot-3" cx="100" cy="61" r="3" fill="none" stroke="#ff2d2d" stroke-width="1.5" opacity="0"/>
-                    <circle class="sz-dot sz-dot-4" cx="100" cy="74" r="3" fill="none" stroke="#ff2d2d" stroke-width="1.5" opacity="0"/>
+                    <path class="sz-part sz-collar" d="M95 18 Q88 10 95 5 Q110 -2 125 5 Q132 10 128 18 L110 30 Q100 22 95 18Z" fill="#2d1111" stroke="rgba(255,100,50,0.3)" stroke-width="1"/>
+                    <!-- Neon accent stripe — vibrant gradient -->
+                    <path class="sz-part sz-stripe" d="M35 100 Q70 72 120 65 Q155 60 185 72" fill="none" stroke="url(#stripe-grad)" stroke-width="5" stroke-linecap="round" filter="url(#sz-neon)"/>
+                    <!-- Stitching detail -->
+                    <path class="sz-part sz-stitch" d="M92 112 L92 45" fill="none" stroke="rgba(255,100,100,0.15)" stroke-width="1" stroke-dasharray="3 4"/>
+                    <!-- Eyelets — cyan neon -->
+                    <circle class="sz-dot sz-dot-1" cx="100" cy="35" r="3" fill="#00e5ff" stroke="#00e5ff" stroke-width="1.5" opacity="0" filter="url(#sz-glow)"/>
+                    <circle class="sz-dot sz-dot-2" cx="100" cy="48" r="3" fill="#00e5ff" stroke="#00e5ff" stroke-width="1.5" opacity="0" filter="url(#sz-glow)"/>
+                    <circle class="sz-dot sz-dot-3" cx="100" cy="61" r="3" fill="#00e5ff" stroke="#00e5ff" stroke-width="1.5" opacity="0" filter="url(#sz-glow)"/>
+                    <circle class="sz-dot sz-dot-4" cx="100" cy="74" r="3" fill="#00e5ff" stroke="#00e5ff" stroke-width="1.5" opacity="0" filter="url(#sz-glow)"/>
                     <!-- Lace lines -->
                     <g class="sz-laces" opacity="0">
-                        <line x1="100" y1="35" x2="115" y2="32" stroke="#666" stroke-width="1.2" stroke-linecap="round"/>
-                        <line x1="100" y1="48" x2="118" y2="44" stroke="#666" stroke-width="1.2" stroke-linecap="round"/>
-                        <line x1="100" y1="61" x2="120" y2="56" stroke="#666" stroke-width="1.2" stroke-linecap="round"/>
+                        <line x1="100" y1="35" x2="115" y2="32" stroke="rgba(255,150,100,0.5)" stroke-width="1.2" stroke-linecap="round"/>
+                        <line x1="100" y1="48" x2="118" y2="44" stroke="rgba(255,150,100,0.5)" stroke-width="1.2" stroke-linecap="round"/>
+                        <line x1="100" y1="61" x2="120" y2="56" stroke="rgba(255,150,100,0.5)" stroke-width="1.2" stroke-linecap="round"/>
                     </g>
                     <!-- Sole tread accents -->
                     <g class="sz-treads" opacity="0">
-                        <rect x="30" y="128" width="8" height="2" rx="1" fill="#444"/>
-                        <rect x="45" y="128" width="8" height="2" rx="1" fill="#444"/>
-                        <rect x="60" y="128" width="8" height="2" rx="1" fill="#444"/>
-                        <rect x="75" y="128" width="8" height="2" rx="1" fill="#444"/>
-                        <rect x="90" y="128" width="8" height="2" rx="1" fill="#444"/>
-                        <rect x="105" y="128" width="8" height="2" rx="1" fill="#444"/>
-                        <rect x="120" y="128" width="8" height="2" rx="1" fill="#444"/>
-                        <rect x="135" y="128" width="8" height="2" rx="1" fill="#444"/>
-                        <rect x="150" y="128" width="8" height="2" rx="1" fill="#444"/>
-                        <rect x="165" y="128" width="8" height="2" rx="1" fill="#444"/>
+                        <rect x="30" y="128" width="8" height="2" rx="1" fill="#cc4400"/>
+                        <rect x="45" y="128" width="8" height="2" rx="1" fill="#cc4400"/>
+                        <rect x="60" y="128" width="8" height="2" rx="1" fill="#cc4400"/>
+                        <rect x="75" y="128" width="8" height="2" rx="1" fill="#cc4400"/>
+                        <rect x="90" y="128" width="8" height="2" rx="1" fill="#cc4400"/>
+                        <rect x="105" y="128" width="8" height="2" rx="1" fill="#cc4400"/>
+                        <rect x="120" y="128" width="8" height="2" rx="1" fill="#cc4400"/>
+                        <rect x="135" y="128" width="8" height="2" rx="1" fill="#cc4400"/>
+                        <rect x="150" y="128" width="8" height="2" rx="1" fill="#cc4400"/>
+                        <rect x="165" y="128" width="8" height="2" rx="1" fill="#cc4400"/>
                     </g>
                 </svg>
                 <canvas class="sz-particles" width="80" height="60"></canvas>
@@ -318,7 +288,8 @@ class App {
                     this.life = 1;
                     this.decay = Math.random() * 0.03 + 0.015;
                     this.size = Math.random() * 2.5 + 0.5;
-                    this.color = Math.random() > 0.4 ? '#ff2d2d' : '#ffffff';
+                    const colors = ['#ff2d2d', '#ff6b1a', '#ff0080', '#00e5ff', '#ffffff'];
+                    this.color = colors[Math.floor(Math.random() * colors.length)];
                 }
                 update() {
                     this.x += this.vx;
@@ -364,15 +335,7 @@ class App {
                 if (!animFrame) animate();
             });
 
-            // Bonus: click for a bigger burst
-            szWrap.addEventListener('click', (e) => {
-                if (e.target.closest('a').getAttribute('href') === 'index.html' &&
-                    window.location.pathname.endsWith('index.html')) {
-                    e.preventDefault();
-                    for (let i = 0; i < 3; i++) setTimeout(spawnBurst, i * 80);
-                    if (!animFrame) animate();
-                }
-            });
+
         }
     }
 
