@@ -1153,45 +1153,168 @@ p {
 }
 
 /* ═══════════════════════════════════════════════
-   KINETIC SNEAKER LOGO
+   SZ ANIMATED MONOGRAM LOGO
    ═══════════════════════════════════════════════ */
-.sneaker-icon {
-    filter: drop-shadow(0 0 5px rgba(224, 224, 224, 0.2));
-    transition: filter var(--duration-base) ease;
+.sz-brand {
+    text-decoration: none;
 }
 
-.k-part {
-    transition: transform var(--duration-base) var(--ease-spring);
-    transform-origin: center center;
+.sz-logo-wrap {
+    position: relative;
+    width: 44px;
+    height: 36px;
+    cursor: pointer;
 }
 
-.logo:hover .sneaker-icon {
-    filter: drop-shadow(0 0 25px var(--accent));
+.sz-logo {
+    display: block;
+    transition: filter 0.4s ease;
 }
 
-.logo:hover .k-sole {
-    transform: translateY(18px) rotate(-6deg);
+.sz-particles {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 60px;
+    pointer-events: none;
+    z-index: 1;
 }
 
-.logo:hover .k-upper {
-    transform: translate(-6px, -18px) rotate(6deg);
+/* ── Stroke draw-on animation ── */
+.sz-letter {
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+    animation: sz-draw 1.8s cubic-bezier(0.65, 0, 0.35, 1) forwards;
 }
 
-.logo:hover .k-panel {
-    transform: scale(1.15) translate(0px, -6px);
+.sz-s {
+    animation-delay: 0.2s;
 }
 
-.logo:hover .k-swoosh {
-    transform: translate(28px, -6px) scale(1.1) rotate(12deg);
+.sz-z {
+    animation-delay: 0.5s;
 }
 
-.logo:hover .k-laces {
-    transform: translate(6px, -28px) rotate(18deg);
+@keyframes sz-draw {
+    to {
+        stroke-dashoffset: 0;
+    }
 }
 
-.logo:hover .k-shadow {
-    transform: scale(0.5);
-    opacity: 0.4;
+/* ── Red slash draw-on ── */
+.sz-slash {
+    stroke-dasharray: 120;
+    stroke-dashoffset: 120;
+    animation: sz-slash-draw 0.6s cubic-bezier(0.22, 1, 0.36, 1) 1.2s forwards;
+}
+
+@keyframes sz-slash-draw {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* ── Corner dots fade + orbit ── */
+.sz-dot {
+    opacity: 0;
+    animation: sz-dot-in 0.3s ease forwards, sz-dot-pulse 3s ease-in-out infinite;
+}
+
+.sz-dot-1 {
+    animation-delay: 1.6s, 1.6s;
+}
+
+.sz-dot-2 {
+    animation-delay: 1.7s, 1.7s;
+}
+
+.sz-dot-3 {
+    animation-delay: 1.8s, 1.8s;
+}
+
+.sz-dot-4 {
+    animation-delay: 1.9s, 1.9s;
+}
+
+@keyframes sz-dot-in {
+    to {
+        opacity: 0.8;
+    }
+}
+
+@keyframes sz-dot-pulse {
+
+    0%,
+    100% {
+        r: 2;
+        opacity: 0.6;
+    }
+
+    50% {
+        r: 3.5;
+        opacity: 1;
+    }
+}
+
+/* ── Hover: glow + glitch ── */
+.sz-brand:hover .sz-logo {
+    filter: drop-shadow(0 0 12px rgba(255, 45, 45, 0.6)) drop-shadow(0 0 30px rgba(255, 45, 45, 0.2));
+    animation: sz-glitch 0.3s ease;
+}
+
+.sz-brand:hover .sz-letter {
+    stroke: #ffffff;
+    transition: stroke 0.3s ease;
+}
+
+.sz-brand:hover .sz-slash {
+    stroke-width: 4;
+    transition: stroke-width 0.2s ease;
+}
+
+@keyframes sz-glitch {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    20% {
+        transform: translate(-2px, 1px);
+    }
+
+    40% {
+        transform: translate(2px, -1px);
+    }
+
+    60% {
+        transform: translate(-1px, -1px);
+    }
+
+    80% {
+        transform: translate(1px, 1px);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+/* ── Ambient glow pulse ── */
+.sz-logo {
+    animation: sz-ambient 4s ease-in-out infinite 2.5s;
+}
+
+@keyframes sz-ambient {
+
+    0%,
+    100% {
+        filter: drop-shadow(0 0 4px rgba(255, 45, 45, 0.15));
+    }
+
+    50% {
+        filter: drop-shadow(0 0 10px rgba(255, 45, 45, 0.35));
+    }
 }
 
 /* ═══════════════════════════════════════════════
@@ -1409,8 +1532,8 @@ p {
         display: none !important;
     }
 
-    .sneaker-icon {
-        transform: scale(0.75);
+    .sz-logo-wrap {
+        transform: scale(0.85);
     }
 }
 

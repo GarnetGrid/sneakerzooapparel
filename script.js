@@ -215,19 +215,33 @@ class App {
         const header = document.createElement('header');
         header.className = 'header-glass';
         header.innerHTML = `
-        <a href="index.html" class="brand" aria-label="Sneaker Zoo Home">
-            <svg class="sneaker-icon logo" width="42" height="28" viewBox="0 0 200 120" aria-hidden="true">
-                <ellipse class="k-part k-shadow" cx="100" cy="115" rx="70" ry="6" fill="rgba(224,224,224,0.10)"/>
-                <path class="k-part k-sole" d="M30 85 Q95 105 175 85 Q180 95 175 100 Q95 120 30 100 Q25 95 30 85Z" fill="#333"/>
-                <path class="k-part k-upper" d="M40 85 Q50 35 90 25 Q130 18 160 40 Q175 55 175 85 Q95 105 40 85Z" fill="#e0e0e0"/>
-                <path class="k-part k-panel" d="M85 30 Q110 25 130 35 Q145 45 150 65 L90 75 Q80 50 85 30Z" fill="#c0c0c0"/>
-                <path class="k-part k-swoosh" d="M60 75 Q100 50 155 60" stroke="#ff2d2d" stroke-width="4.5" fill="none" stroke-linecap="round"/>
-                <g class="k-part k-laces">
-                    <line x1="95" y1="35" x2="110" y2="30" stroke="#888" stroke-width="2" stroke-linecap="round"/>
-                    <line x1="92" y1="45" x2="112" y2="38" stroke="#888" stroke-width="2" stroke-linecap="round"/>
-                    <line x1="90" y1="55" x2="113" y2="47" stroke="#888" stroke-width="2" stroke-linecap="round"/>
-                </g>
-            </svg>
+        <a href="index.html" class="brand sz-brand" aria-label="Sneaker Zoo Home">
+            <div class="sz-logo-wrap">
+                <svg class="sz-logo" width="44" height="36" viewBox="0 0 120 100" aria-hidden="true">
+                    <defs>
+                        <filter id="sz-glow">
+                            <feGaussianBlur stdDeviation="3" result="blur"/>
+                            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                        </filter>
+                        <linearGradient id="sz-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#ffffff"/>
+                            <stop offset="100%" stop-color="#888888"/>
+                        </linearGradient>
+                    </defs>
+                    <!-- S letter path -->
+                    <path class="sz-letter sz-s" d="M15 30 Q15 15 35 15 L55 15 Q70 15 70 30 Q70 45 55 45 L35 55 Q15 55 15 70 Q15 85 35 85 L55 85 Q70 85 70 70" fill="none" stroke="url(#sz-grad)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" filter="url(#sz-glow)"/>
+                    <!-- Z letter path -->
+                    <path class="sz-letter sz-z" d="M50 15 L105 15 L50 85 L105 85" fill="none" stroke="url(#sz-grad)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" filter="url(#sz-glow)"/>
+                    <!-- Diagonal slash accent -->
+                    <line class="sz-slash" x1="30" y1="90" x2="90" y2="10" stroke="#ff2d2d" stroke-width="3" stroke-linecap="round" filter="url(#sz-glow)"/>
+                    <!-- Corner dots -->
+                    <circle class="sz-dot sz-dot-1" cx="10" cy="10" r="2" fill="#ff2d2d" opacity="0.6"/>
+                    <circle class="sz-dot sz-dot-2" cx="110" cy="10" r="2" fill="#ff2d2d" opacity="0.6"/>
+                    <circle class="sz-dot sz-dot-3" cx="10" cy="90" r="2" fill="#ff2d2d" opacity="0.6"/>
+                    <circle class="sz-dot sz-dot-4" cx="110" cy="90" r="2" fill="#ff2d2d" opacity="0.6"/>
+                </svg>
+                <canvas class="sz-particles" width="80" height="60"></canvas>
+            </div>
         </a>
         <button class="hamburger" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
             <span class="hamburger-line"></span>
@@ -261,6 +275,82 @@ class App {
                     toggle.classList.remove('is-active');
                     toggle.setAttribute('aria-expanded', 'false');
                 });
+            });
+        }
+
+        // SZ Logo particle system
+        const szWrap = header.querySelector('.sz-logo-wrap');
+        const szCanvas = header.querySelector('.sz-particles');
+        if (szWrap && szCanvas) {
+            const ctx = szCanvas.getContext('2d');
+            let particles = [];
+            let animFrame = null;
+
+            class Particle {
+                constructor(x, y) {
+                    this.x = x;
+                    this.y = y;
+                    const angle = Math.random() * Math.PI * 2;
+                    const speed = Math.random() * 3 + 1.5;
+                    this.vx = Math.cos(angle) * speed;
+                    this.vy = Math.sin(angle) * speed;
+                    this.life = 1;
+                    this.decay = Math.random() * 0.03 + 0.015;
+                    this.size = Math.random() * 2.5 + 0.5;
+                    this.color = Math.random() > 0.4 ? '#ff2d2d' : '#ffffff';
+                }
+                update() {
+                    this.x += this.vx;
+                    this.y += this.vy;
+                    this.vy += 0.04; // micro gravity
+                    this.vx *= 0.99;
+                    this.life -= this.decay;
+                }
+                draw(ctx) {
+                    ctx.globalAlpha = this.life;
+                    ctx.fillStyle = this.color;
+                    ctx.shadowColor = this.color;
+                    ctx.shadowBlur = 6;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size * this.life, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            function spawnBurst() {
+                const cx = szCanvas.width / 2;
+                const cy = szCanvas.height / 2;
+                for (let i = 0; i < 18; i++) {
+                    particles.push(new Particle(cx, cy));
+                }
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, szCanvas.width, szCanvas.height);
+                particles = particles.filter(p => p.life > 0);
+                particles.forEach(p => { p.update(); p.draw(ctx); });
+                ctx.globalAlpha = 1;
+                ctx.shadowBlur = 0;
+                if (particles.length > 0) {
+                    animFrame = requestAnimationFrame(animate);
+                } else {
+                    animFrame = null;
+                }
+            }
+
+            szWrap.addEventListener('mouseenter', () => {
+                spawnBurst();
+                if (!animFrame) animate();
+            });
+
+            // Bonus: click for a bigger burst
+            szWrap.addEventListener('click', (e) => {
+                if (e.target.closest('a').getAttribute('href') === 'index.html' &&
+                    window.location.pathname.endsWith('index.html')) {
+                    e.preventDefault();
+                    for (let i = 0; i < 3; i++) setTimeout(spawnBurst, i * 80);
+                    if (!animFrame) animate();
+                }
             });
         }
     }
