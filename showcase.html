@@ -4,44 +4,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SNEAKER ZOO // ARCHIVE</title>
-    <meta name="description" content="Browse the complete Sneaker Zoo archive. Rare, deadstock, and kinetic footwear.">
+    <title>SNEAKER ZOO // THE ARCHIVE</title>
+    <meta name="description"
+        content="Browse the complete Sneaker Zoo archive. Authenticated deadstock, rare grails, and premium streetwear.">
+    <link rel="icon" type="image/jpeg" href="favicon.jpeg">
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .archive-hero {
+            padding: 14rem 0 4rem;
+            text-align: center;
+        }
+
+        .product-count {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            letter-spacing: 0.15em;
+        }
+
+        .sort-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--line);
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .view-toggle {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .view-toggle button {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--line-strong);
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .view-toggle button.active {
+            background: var(--text-primary);
+            color: var(--void);
+            border-color: var(--text-primary);
+        }
+
+        #showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            transition: all 0.4s ease;
+        }
+
+        #showcase-grid.grid-large {
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+        }
+
+        .empty-state {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 6rem 2rem;
+            border: 1px dashed var(--line-strong);
+        }
+
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .archive-hero {
+                padding: 10rem 0 3rem;
+            }
+
+            #showcase-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+    </style>
 </head>
 
-<body>
+<body class="loading">
+    <div id="loader">
+        <div class="loader-brand">SNEAKER ZOO</div>
+        <div class="loader-bar"></div>
+    </div>
+    <div class="noise-overlay" aria-hidden="true"></div>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <header id="bespoke-header"
-        style="position: fixed; top: 0; width: 100%; padding: 2rem; z-index: 100; display: flex; justify-content: space-between;">
-        <a href="index.html" class="brand"
-            style="font-family: var(--font-head); font-weight: 800; font-size: 1.5rem;">SZ®</a>
-        <nav>
-            <span class="btn-magnet" style="border: none; padding: 0;">CART [0]</span>
-        </nav>
-    </header>
+    <main id="main-content">
 
-    <main style="padding-top: 15vh;">
-        <h2 class="text-center" style="font-size: 8vw; margin-bottom: 5vh;">THE ARCHIVE</h2>
-
-        <!-- FILTER UI -->
-        <div class="filter-bar"
-            style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 3rem; font-family: var(--font-mono);">
-            <button class="filter-btn active" data-filter="ALL"
-                style="background: none; border: none; color: var(--hologram); cursor: pointer; text-transform: uppercase;">ALL</button>
-            <button class="filter-btn" data-filter="FOOTWEAR"
-                style="background: none; border: none; color: var(--void); -webkit-text-stroke: 1px var(--hologram); cursor: pointer; text-transform: uppercase;">FOOTWEAR</button>
-            <button class="filter-btn" data-filter="APPAREL"
-                style="background: none; border: none; color: var(--void); -webkit-text-stroke: 1px var(--hologram); cursor: pointer; text-transform: uppercase;">APPAREL</button>
-            <button class="filter-btn" data-filter="OBJECTS"
-                style="background: none; border: none; color: var(--void); -webkit-text-stroke: 1px var(--hologram); cursor: pointer; text-transform: uppercase;">OBJECTS</button>
+        <!-- HERO -->
+        <div class="archive-hero container">
+            <p class="chapter-title reveal">BROWSE COLLECTION</p>
+            <h1 class="display-large reveal" style="margin-bottom: 1rem;">THE<br><span
+                    class="text-accent">ARCHIVE</span></h1>
+            <p class="product-count reveal" id="product-count">LOADING...</p>
         </div>
 
-        <!-- CUSTOM GRID (DYNAMIC) -->
-        <div id="showcase-grid" class="grid-base"
-            style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); min-height: 50vh;">
-            <!-- INJECTED BY JS -->
+        <!-- FILTER + SORT BAR -->
+        <div class="container">
+            <div class="sort-bar reveal">
+                <div class="filter-bar" style="margin-bottom: 0; justify-content: flex-start;">
+                    <button class="btn-pill active" data-filter="ALL">ALL</button>
+                    <button class="btn-pill" data-filter="FOOTWEAR">FOOTWEAR</button>
+                    <button class="btn-pill" data-filter="APPAREL">APPAREL</button>
+                    <button class="btn-pill" data-filter="OBJECTS">OBJECTS</button>
+                </div>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <select id="sort-select"
+                        style="background: transparent; border: 1px solid var(--line-strong); color: var(--text-secondary); padding: 0.5rem 1rem; font-family: var(--font-body); font-size: 0.8rem; cursor: pointer; outline: none;">
+                        <option value="default" style="background: var(--void);">SORT BY</option>
+                        <option value="price-asc" style="background: var(--void);">PRICE: LOW → HIGH</option>
+                        <option value="price-desc" style="background: var(--void);">PRICE: HIGH → LOW</option>
+                        <option value="name" style="background: var(--void);">NAME: A → Z</option>
+                        <option value="year" style="background: var(--void);">YEAR: NEWEST</option>
+                    </select>
+
+                    <div class="view-toggle">
+                        <button id="view-grid" class="active" title="Grid view">▦</button>
+                        <button id="view-large" title="Large view">▣</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PRODUCT GRID -->
+            <div id="showcase-grid" class="stagger-children">
+                <!-- Injected by JS -->
+            </div>
+
+            <div style="text-align: center; padding: 4rem 0;">
+                <p
+                    style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.15em;">
+                    ALL ITEMS AUTHENTICATED // SECURE CHECKOUT
+                </p>
+            </div>
         </div>
     </main>
+
+    <div id="footer-container"></div>
 
     <script src="data.js"></script>
     <script src="script.js"></script>

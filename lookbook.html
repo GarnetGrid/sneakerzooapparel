@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNEAKER ZOO // LOOKBOOK</title>
+    <meta name="description" content="The visual journal. Sneaker Zoo editorial lookbook and brand photography.">
+    <link rel="icon" type="image/jpeg" href="favicon.jpeg">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .lookbook-hero {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: 6rem var(--pad);
+        }
+
+        .lookbook-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 40%, rgba(255, 45, 45, 0.06), transparent 50%),
+                radial-gradient(circle at 80% 60%, rgba(125, 211, 252, 0.04), transparent 50%);
+        }
+
+        .lookbook-season {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 0.2em;
+            margin-top: 2rem;
+        }
+
+        /* Editorial Grid */
+        .editorial-grid {
+            display: grid;
+            gap: 2px;
+        }
+
+        .editorial-row {
+            display: grid;
+            gap: 2px;
+        }
+
+        .editorial-row.two-col {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .editorial-row.three-col {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .editorial-row.hero-split {
+            grid-template-columns: 2fr 1fr;
+        }
+
+        .editorial-row.split-hero {
+            grid-template-columns: 1fr 2fr;
+        }
+
+        .editorial-cell {
+            position: relative;
+            overflow: hidden;
+            background: var(--surface);
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .editorial-cell.tall {
+            min-height: 600px;
+        }
+
+        .editorial-cell .cell-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 3rem;
+        }
+
+        .editorial-cell .cell-bg {
+            position: absolute;
+            inset: 0;
+            background: var(--void-light);
+            transition: transform 8s ease;
+        }
+
+        .editorial-cell:hover .cell-bg {
+            transform: scale(1.05);
+        }
+
+        .editorial-cell .cell-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(3, 3, 3, 0.8), transparent 60%);
+            z-index: 1;
+        }
+
+        .cell-icon {
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .cell-title {
+            font-family: var(--font-head);
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .cell-subtitle {
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .cell-tag {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            color: var(--text-muted);
+            letter-spacing: 0.15em;
+            z-index: 3;
+        }
+
+        .cell-price-tag {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 1rem;
+            z-index: 3;
+        }
+
+        /* Quote Section */
+        .editorial-quote {
+            padding: 8rem var(--pad);
+            text-align: center;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .editorial-quote blockquote {
+            font-family: var(--font-head);
+            font-size: clamp(1.5rem, 4vw, 3rem);
+            font-weight: 800;
+            line-height: 1.2;
+            max-width: 800px;
+            margin: 0 auto;
+            text-transform: uppercase;
+        }
+
+        .editorial-quote cite {
+            display: block;
+            margin-top: 2rem;
+            font-family: var(--font-cyber);
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            color: var(--text-muted);
+            font-style: normal;
+        }
+
+        /* Ticker */
+        .lookbook-ticker {
+            display: flex;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .lookbook-ticker .ticker-track {
+            display: inline-flex;
+            animation: marqueeScroll 20s linear infinite;
+        }
+
+        .lookbook-ticker .ticker-item {
+            font-family: var(--font-head);
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 800;
+            text-transform: uppercase;
+            white-space: nowrap;
+            padding: 0 2rem;
+            color: transparent;
+            -webkit-text-stroke: 1px var(--line-strong);
+        }
+
+        .lookbook-ticker .ticker-item:nth-child(odd) {
+            color: var(--text-primary);
+            -webkit-text-stroke: 0;
+        }
+
+        @media (max-width: 768px) {
+
+            .editorial-row.two-col,
+            .editorial-row.three-col,
+            .editorial-row.hero-split,
+            .editorial-row.split-hero {
+                grid-template-columns: 1fr;
+            }
+
+            .editorial-cell {
+                min-height: 300px;
+            }
+
+            .editorial-cell.tall {
+                min-height: 400px;
+            }
+        }
+    </style>
+</head>
+
+<body class="loading">
+    <div id="loader">
+        <div class="loader-brand">SNEAKER ZOO</div>
+        <div class="loader-bar"></div>
+    </div>
+    <div class="noise-overlay" aria-hidden="true"></div>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <main id="main-content">
+
+        <!-- HERO -->
+        <section class="lookbook-hero">
+            <div style="position: relative; z-index: 2;">
+                <p class="chapter-title">VISUAL JOURNAL</p>
+                <h1 class="display-huge" style="margin-bottom: 0;">LOOK<br>BOOK</h1>
+                <p class="lookbook-season">SPRING / SUMMER 2026</p>
+            </div>
+        </section>
+
+        <!-- STROKE TEXT TICKER -->
+        <div class="lookbook-ticker">
+            <div class="ticker-track">
+                <span class="ticker-item">DEADSTOCK</span>
+                <span class="ticker-item">GRAILS</span>
+                <span class="ticker-item">CULTURE</span>
+                <span class="ticker-item">ARCHIVE</span>
+                <span class="ticker-item">DEADSTOCK</span>
+                <span class="ticker-item">GRAILS</span>
+                <span class="ticker-item">CULTURE</span>
+                <span class="ticker-item">ARCHIVE</span>
+            </div>
+        </div>
+
+        <!-- EDITORIAL GRID -->
+        <div class="editorial-grid">
+
+            <!-- ROW 1: 2-col hero -->
+            <div class="editorial-row hero-split">
+                <div class="editorial-cell tall reveal-left" onclick="window.location='product.html?id=fz_01'">
+                    <div class="cell-bg"></div>
+                    <div class="cell-overlay"></div>
+                    <div class="cell-content">
+                        <span class="cell-icon">👟</span>
+                        <h2 class="cell-title">JORDAN 1<br>LOST & FOUND</h2>
+                        <p class="cell-subtitle">The pair that started it all. Museum condition.</p>
+                    </div>
+                    <span class="cell-tag">FZ_01 // FOOTWEAR</span>
+                    <span class="cell-price-tag">$450</span>
+                </div>
+                <div class="editorial-cell tall reveal-right" style="background: var(--surface);">
+                    <div class="cell-content">
+                        <p class="chapter-title">THE GRAIL ISSUE</p>
+                        <h3
+                            style="font-family: var(--font-head); font-size: 1.3rem; margin-bottom: 1rem; line-height: 1.3;">
+                            Every pair in our archive<br>has been authenticated with<br>our 38-point protocol
+                        </h3>
+                        <p
+                            style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.7; max-width: 300px; margin: 0 auto;">
+                            We don't do replicas. We don't do "UA." <br>If it's in the Zoo, it's real.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ROW 2: 3-col -->
+            <div class="editorial-row three-col">
+                <div class="editorial-cell reveal" onclick="window.location='product.html?id=fz_02'">
+                    <div class="cell-bg"></div>
+                    <div class="cell-overlay"></div>
+                    <div class="cell-content">
+                        <span class="cell-icon">🖤</span>
+                        <h3 class="cell-title">YEEZY 350</h3>
+                        <p class="cell-subtitle">Pirate Black OG</p>
+                    </div>
+                    <span class="cell-price-tag">$380</span>
+                </div>
+                <div class="editorial-cell reveal" onclick="window.location='product.html?id=fz_04'">
+                    <div class="cell-bg"></div>
+                    <div class="cell-overlay"></div>
+                    <div class="cell-content">
+                        <span class="cell-icon">🔴</span>
+                        <h3 class="cell-title">OFF-WHITE DUNK</h3>
+                        <p class="cell-subtitle">Lot 1 of 50</p>
+                    </div>
+                    <span class="cell-price-tag" style="color: var(--accent);">$1,200</span>
+                </div>
+                <div class="editorial-cell reveal" onclick="window.location='product.html?id=fz_05'">
+                    <div class="cell-bg"></div>
+                    <div class="cell-overlay"></div>
+                    <div class="cell-content">
+                        <span class="cell-icon">⚫</span>
+                        <h3 class="cell-title">RICK OWENS</h3>
+                        <p class="cell-subtitle">Geobasket</p>
+                    </div>
+                    <span class="cell-price-tag">$950</span>
+                </div>
+            </div>
+
+            <!-- QUOTE -->
+            <div class="editorial-quote">
+                <blockquote class="reveal">
+                    "Sneakers aren't just shoes.<br>
+                    They're <span class="text-accent">cultural currency</span>."
+                </blockquote>
+                <cite>— SNEAKER ZOO MANIFESTO</cite>
+            </div>
+
+            <!-- ROW 3: split-hero -->
+            <div class="editorial-row split-hero">
+                <div class="editorial-cell reveal-left" style="background: var(--surface);">
+                    <div class="cell-content">
+                        <p class="chapter-title">APPAREL</p>
+                        <h3
+                            style="font-family: var(--font-head); font-size: 1.5rem; margin-bottom: 1rem; text-transform: uppercase;">
+                            Beyond<br>Footwear
+                        </h3>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7;">
+                            Vintage grails, deadstock tees, and streetwear essentials.
+                            Curated with the same obsession as our sneakers.
+                        </p>
+                        <a href="showcase.html" class="btn-gallery" style="margin-top: 1.5rem;">SHOP APPAREL</a>
+                    </div>
+                </div>
+                <div class="editorial-cell tall reveal-right" onclick="window.location='product.html?id=ap_01'">
+                    <div class="cell-bg"></div>
+                    <div class="cell-overlay"></div>
+                    <div class="cell-content">
+                        <span class="cell-icon">👕</span>
+                        <h3 class="cell-title">VINTAGE TEE<br>AKIRA</h3>
+                        <p class="cell-subtitle">Original 1988 print. One of one.</p>
+                    </div>
+                    <span class="cell-price-tag" style="color: var(--gold);">$650</span>
+                </div>
+            </div>
+
+            <!-- ROW 4: 2-col -->
+            <div class="editorial-row two-col">
+                <div class="editorial-cell reveal" onclick="window.location='product.html?id=ob_01'">
+                    <div class="cell-bg"></div>
+                    <div class="cell-overlay"></div>
+                    <div class="cell-content">
+                        <span class="cell-icon">🗿</span>
+                        <h3 class="cell-title">KUBRICK<br>1000% BEARBRICK</h3>
+                        <p class="cell-subtitle">Museum-grade collectible</p>
+                    </div>
+                    <span class="cell-price-tag">$800</span>
+                </div>
+                <div class="editorial-cell reveal" onclick="window.location='product.html?id=ob_02'">
+                    <div class="cell-bg"></div>
+                    <div class="cell-overlay"></div>
+                    <div class="cell-content">
+                        <span class="cell-icon">💍</span>
+                        <h3 class="cell-title">CHROME HEARTS<br>RING</h3>
+                        <p class="cell-subtitle">Solid silver, handcrafted</p>
+                    </div>
+                    <span class="cell-price-tag">$550</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- FINAL CTA -->
+        <section style="padding: 8rem 0; background: var(--surface); text-align: center;">
+            <div class="container reveal">
+                <p class="chapter-title">START COLLECTING</p>
+                <h2 class="display-medium" style="margin-bottom: 2rem;">Enter The<br><span
+                        class="text-accent">Archive</span></h2>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="showcase.html" class="btn-accent"><span>SHOP ALL</span></a>
+                    <a href="drops.html" class="btn-magnet">VIEW DROPS</a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

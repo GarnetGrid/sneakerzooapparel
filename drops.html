@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNEAKER ZOO // UPCOMING DROPS</title>
+    <meta name="description" content="Stay ahead of the curve. See what's dropping next at Sneaker Zoo.">
+    <link rel="icon" type="image/jpeg" href="favicon.jpeg">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .drops-hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 12rem var(--pad) 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .drops-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--accent-soft), transparent 40%),
+                linear-gradient(315deg, rgba(125, 211, 252, 0.04), transparent 40%);
+        }
+
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            max-width: 500px;
+            margin: 2rem auto;
+        }
+
+        .countdown-unit {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            padding: 1.5rem 1rem;
+            text-align: center;
+        }
+
+        .countdown-unit .number {
+            font-family: var(--font-head);
+            font-size: 2.5rem;
+            font-weight: 800;
+        }
+
+        .countdown-unit .label {
+            font-family: var(--font-cyber);
+            font-size: 0.55rem;
+            letter-spacing: 0.2em;
+            color: var(--text-muted);
+            margin-top: 0.3rem;
+        }
+
+        /* Drop Cards */
+        .drop-card {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            border: 1px solid var(--line);
+            background: var(--surface);
+            overflow: hidden;
+            transition: all var(--duration-base) var(--ease-out-expo);
+        }
+
+        .drop-card:hover {
+            border-color: var(--line-strong);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px -15px rgba(0, 0, 0, 0.5);
+        }
+
+        .drop-card .drop-image {
+            background: var(--void-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 300px;
+            font-size: 5rem;
+            border-right: 1px solid var(--line);
+        }
+
+        .drop-card .drop-content {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .drop-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: var(--font-cyber);
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            padding: 0.4rem 0.8rem;
+            border: 1px solid;
+            width: fit-content;
+            margin-bottom: 1.5rem;
+        }
+
+        .drop-status.upcoming {
+            color: var(--ice);
+            border-color: rgba(125, 211, 252, 0.3);
+            background: rgba(125, 211, 252, 0.05);
+        }
+
+        .drop-status.soon {
+            color: var(--gold);
+            border-color: rgba(201, 168, 76, 0.3);
+            background: rgba(201, 168, 76, 0.05);
+        }
+
+        .drop-status.live {
+            color: var(--accent);
+            border-color: rgba(255, 45, 45, 0.3);
+            background: rgba(255, 45, 45, 0.05);
+        }
+
+        .drop-name {
+            font-family: var(--font-head);
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .drop-variant {
+            font-family: var(--font-head);
+            font-size: 1rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .drop-desc {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .drop-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .drop-meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .drop-meta-item .drop-meta-label {
+            font-family: var(--font-cyber);
+            font-size: 0.5rem;
+            letter-spacing: 0.2em;
+            color: var(--text-muted);
+            margin-bottom: 0.2rem;
+        }
+
+        .drop-meta-item .drop-meta-value {
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .drops-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        /* Notify form */
+        .notify-form {
+            display: flex;
+            gap: 0;
+            border: 1px solid var(--line-strong);
+        }
+
+        .notify-form input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            padding: 0.8rem 1rem;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            outline: none;
+        }
+
+        .notify-form button {
+            background: var(--text-primary);
+            color: var(--void);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .notify-form button:hover {
+            background: var(--accent);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .drop-card {
+                grid-template-columns: 1fr;
+            }
+
+            .drop-card .drop-image {
+                min-height: 200px;
+                border-right: none;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .countdown-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+
+<body class="loading">
+    <div id="loader">
+        <div class="loader-brand">SNEAKER ZOO</div>
+        <div class="loader-bar"></div>
+    </div>
+    <div class="noise-overlay" aria-hidden="true"></div>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <main id="main-content">
+
+        <!-- HERO -->
+        <section class="drops-hero">
+            <div style="position: relative; z-index: 2;">
+                <p class="chapter-title">RELEASE CALENDAR</p>
+                <h1 class="display-large" style="margin-bottom: 0.5rem;">UPCOMING<br><span
+                        class="text-accent">DROPS</span></h1>
+                <p style="color: var(--text-secondary); max-width: 500px; margin: 0 auto 1rem;">
+                    Never miss a release. Get notified before drops go live.
+                </p>
+
+                <div class="countdown-grid">
+                    <div class="countdown-unit">
+                        <div class="number" id="cd-days">07</div>
+                        <div class="label">DAYS</div>
+                    </div>
+                    <div class="countdown-unit">
+                        <div class="number" id="cd-hours">14</div>
+                        <div class="label">HOURS</div>
+                    </div>
+                    <div class="countdown-unit">
+                        <div class="number" id="cd-mins">32</div>
+                        <div class="label">MINS</div>
+                    </div>
+                    <div class="countdown-unit">
+                        <div class="number" id="cd-secs">08</div>
+                        <div class="label">SECS</div>
+                    </div>
+                </div>
+                <p
+                    style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted); letter-spacing: 0.1em;">
+                    UNTIL NEXT DROP</p>
+            </div>
+        </section>
+
+        <!-- DROPS LIST -->
+        <section class="section" style="padding-top: 6rem;">
+            <div class="container">
+                <div class="drops-list">
+
+                    <!-- DROP 1 — Next Up -->
+                    <div class="drop-card reveal">
+                        <div class="drop-image">👟</div>
+                        <div class="drop-content">
+                            <div class="drop-status soon">◉ DROPPING SOON</div>
+                            <div class="drop-name">AIR JORDAN 1 HIGH</div>
+                            <div class="drop-variant">OG "CHICAGO" 2026 RETRO</div>
+                            <p class="drop-desc">
+                                The most iconic sneaker of all time returns in its original glory.
+                                Premium leather, OG colorway, Nike Air branding on the tongue. Limited allocation.
+                            </p>
+                            <div class="drop-meta">
+                                <div class="drop-meta-item">
+                                    <span class="drop-meta-label">DROP DATE</span>
+                                    <span class="drop-meta-value">MAR 01, 2026</span>
+                                </div>
+                                <div class="drop-meta-item">
+                                    <span class="drop-meta-label">RETAIL</span>
+                                    <span class="drop-meta-value">$180</span>
+                                </div>
+                                <div class="drop-meta-item">
+                                    <span class="drop-meta-label">ESTIMATED RESALE</span>
+                                    <span class="drop-meta-value" style="color: var(--accent);">$500+</span>
+                                </div>
+                            </div>
+                            <form class="notify-form"
+                                onsubmit="event.preventDefault(); this.querySelector('button').textContent='NOTIFIED ✓'; this.querySelector('input').disabled=true;">
+                                <input type="email" placeholder="YOUR EMAIL FOR NOTIFICATION" required>
+                                <button type="submit">NOTIFY ME</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- DROP 2 -->
+                    <div class="drop-card reveal">
+                        <div class="drop-image">👕</div>
+                        <div class="drop-content">
+                            <div class="drop-status upcoming">◎ UPCOMING</div>
+                            <div class="drop-name">SUPREME × ZOO</div>
+                            <div class="drop-variant">EXCLUSIVE COLLAB TEE</div>
+                            <p class="drop-desc">
+                                SneakerZoo exclusive. Limited to 50 units. Cut-and-sew heavyweight cotton.
+                                Co-branded box logo. Will not restock.
+                            </p>
+                            <div class="drop-meta">
+                                <div class="drop-meta-item">
+                                    <span class="drop-meta-label">DROP DATE</span>
+                                    <span class="drop-meta-value">MAR 15, 2026</span>
+                                </div>
+                                <div class="drop-meta-item">
+                                    <span class="drop-meta-label">RETAIL</span>
+                                    <span class="drop-meta-value">$120</span>
+                                </div>
+                                <div class="drop-meta-item">
+                                    <span class="drop-meta-label">UNITS</span>
+                                    <span class="drop-meta-value" style="color: var(--gold);">50 ONLY</span>
+                                </div>
+                            </div>
+                            <form class="notify-form"
+                                onsubmit="event.preventDefault(); this.querySelector('button').textContent='NOTIFIED ✓'; this.querySelector('input').disabled=true;">
+                                <input type="email" placeholder="YOUR EMAIL FOR NOTIFICATION" required>
+                                <button type="submit">NOTIFY ME</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- DROP 3 -->
+                    <div class="drop-card reveal">
+                        <div class="drop-image">🗿</div>
+                        <div class="drop-content">
+                            <div class="drop-status upcoming">◎ UPCOMING</div>
+                            <div class="drop-name">KAWS × MEDICOM</div>
+                            <div class="drop-variant">COMPANION 1000% BE@RBRICK</div>
+                            <p class="drop-desc">
+                                One of the most sought-after collectibles in the game. Museum-quality figure
+                                standing at 70cm. Authenticated with holographic certificate.
+                            </p>
+                            <div class="drop-meta">
+                                <div class="drop-meta-item">
+                                    <span class="drop-meta-label">DROP DATE</span>
+                                    <span class="drop-meta-value">APR 01, 2026</span>
+                                </div>
+                                <div class="drop-meta-item">
+                                    <span class="drop-meta-label">RETAIL</span>
+                                    <span class="drop-meta-value">$2,800</span>
+                                </div>
+                                <div class="drop-meta-item">
+                                    <span class="drop-meta-label">CATEGORY</span>
+                                    <span class="drop-meta-value">OBJECTS</span>
+                                </div>
+                            </div>
+                            <form class="notify-form"
+                                onsubmit="event.preventDefault(); this.querySelector('button').textContent='NOTIFIED ✓'; this.querySelector('input').disabled=true;">
+                                <input type="email" placeholder="YOUR EMAIL FOR NOTIFICATION" required>
+                                <button type="submit">NOTIFY ME</button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div style="text-align: center; padding: 5rem 0 2rem;">
+                    <p
+                        style="font-family: var(--font-cyber); font-size: 0.65rem; letter-spacing: 0.2em; color: var(--text-muted);">
+                        MORE DROPS ANNOUNCED WEEKLY</p>
+                    <p style="margin-top: 1rem;">
+                        <a href="showcase.html" class="btn-magnet">SHOP CURRENT ARCHIVE</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <div id="footer-container"></div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Live Countdown
+        (function () {
+            const nextDrop = new Date('2026-03-01T10:00:00-05:00');
+            function updateCountdown() {
+                const now = new Date();
+                const diff = nextDrop - now;
+                if (diff <= 0) {
+                    document.getElementById('cd-days').textContent = '00';
+                    document.getElementById('cd-hours').textContent = '00';
+                    document.getElementById('cd-mins').textContent = '00';
+                    document.getElementById('cd-secs').textContent = '00';
+                    return;
+                }
+                const d = Math.floor(diff / 86400000);
+                const h = Math.floor((diff % 86400000) / 3600000);
+                const m = Math.floor((diff % 3600000) / 60000);
+                const s = Math.floor((diff % 60000) / 1000);
+                document.getElementById('cd-days').textContent = String(d).padStart(2, '0');
+                document.getElementById('cd-hours').textContent = String(h).padStart(2, '0');
+                document.getElementById('cd-mins').textContent = String(m).padStart(2, '0');
+                document.getElementById('cd-secs').textContent = String(s).padStart(2, '0');
+            }
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        })();
+    </script>
+</body>
+
+</html>

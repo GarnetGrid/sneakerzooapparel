@@ -5,261 +5,364 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SNEAKER ZOO // MANIFESTO</title>
-    <meta name="description"
-        content="Enter the Deep Void. The story behind the world's most exclusive kinetic sneaker archive.">
-
-    <!-- Fonts & Styles -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&family=Syne:wght@400;700;800&family=Syncopate:wght@400;700&display=swap"
-        rel="stylesheet">
+    <meta name="description" content="Our story. Born on Staten Island, built for the culture.">
+    <link rel="icon" type="image/jpeg" href="favicon.jpeg">
     <link rel="stylesheet" href="styles.css">
-
     <style>
-        /* SCROLLYTELLING LAYOUT */
-        .archive-section {
-            min-height: 100vh;
+        .about-hero {
+            min-height: 90vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            position: relative;
-            padding: 4rem 2rem;
-            overflow: hidden;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .archive-hero {
+            justify-content: center;
             text-align: center;
-            z-index: 2;
-        }
-
-        .kinetic-title {
-            font-family: 'Syncopate', sans-serif;
-            font-size: clamp(3rem, 8vw, 8rem);
-            font-weight: 700;
-            line-height: 0.9;
-            color: transparent;
-            -webkit-text-stroke: 2px rgba(255, 255, 255, 0.8);
-            text-transform: uppercase;
-            margin-bottom: 2rem;
             position: relative;
+            overflow: hidden;
         }
 
-        .kinetic-title span {
-            display: block;
-            opacity: 0;
-            transform: translateY(50px);
-            animation: textRise 1s cubic-bezier(0.2, 1, 0.3, 1) forwards;
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(255, 45, 45, 0.08), transparent 60%);
         }
 
-        .kinetic-title span:nth-child(2) {
-            animation-delay: 0.2s;
-            -webkit-text-stroke: 0;
-            color: var(--accent);
-        }
-
-        .kinetic-title span:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-
-        @keyframes textRise {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .manifesto-section {
+            padding: 8rem var(--pad);
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .manifesto-text {
-            font-family: 'Syne', sans-serif;
-            font-size: clamp(1.2rem, 3vw, 2rem);
-            max-width: 800px;
-            line-height: 1.5;
+            font-family: var(--font-body);
+            font-size: 1.2rem;
+            line-height: 2;
             color: var(--text-secondary);
-            text-align: center;
-            margin-top: 2rem;
+            margin-bottom: 2rem;
         }
 
-        .highlight {
-            color: var(--hologram);
-            font-weight: 700;
+        .manifesto-text strong {
+            color: var(--text-primary);
+            font-weight: 600;
         }
 
-        /* GRID OVERLAY */
-        .cyber-grid-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image:
-                linear-gradient(rgba(255, 51, 51, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 51, 51, 0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
-            pointer-events: none;
-            z-index: 0;
+        .manifesto-highlight {
+            font-family: var(--font-head);
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 800;
+            line-height: 1.3;
+            text-transform: uppercase;
+            padding: 4rem 0;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            margin: 4rem 0;
         }
 
-        /* TEAM CARDS */
-        .team-grid {
+        /* Values Grid */
+        .values-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2px;
+        }
+
+        .value-card {
+            background: var(--surface);
+            padding: 3rem;
+            border: 1px solid var(--line);
+            transition: all var(--duration-base) var(--ease-out-expo);
+        }
+
+        .value-card:hover {
+            background: var(--surface-elevated);
+            border-color: var(--line-strong);
+        }
+
+        .value-icon {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .value-title {
+            font-family: var(--font-head);
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+        }
+
+        .value-desc {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Stats */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0;
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .stat {
+            padding: 3rem;
+            text-align: center;
+            border-right: 1px solid var(--line);
+        }
+
+        .stat:last-child {
+            border-right: none;
+        }
+
+        .stat-number {
+            font-family: var(--font-head);
+            font-weight: 800;
+            font-size: 3rem;
+            color: var(--text-primary);
+        }
+
+        .stat-label {
+            font-family: var(--font-cyber);
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            color: var(--text-muted);
+            margin-top: 0.5rem;
+        }
+
+        /* Team */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
-            width: 100%;
-            max-width: 1200px;
-            margin-top: 4rem;
         }
 
         .team-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            text-align: left;
-            transition: all 0.3s ease;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            padding: 2.5rem;
+            text-align: center;
+            transition: all var(--duration-base) ease;
         }
 
         .team-card:hover {
             border-color: var(--accent);
-            transform: translateY(-5px);
-            background: rgba(255, 51, 51, 0.05);
-            /* Red Tint */
+            transform: translateY(-4px);
         }
 
-        .member-role {
-            font-family: 'Syncopate', sans-serif;
-            font-size: 0.8rem;
-            color: var(--accent);
-            margin-bottom: 0.5rem;
-            display: block;
+        .team-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid var(--line-strong);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1.5rem;
+            background: var(--void-light);
         }
 
-        .member-name {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.5rem;
+        .team-name {
+            font-family: var(--font-head);
             font-weight: 700;
-            color: var(--text-primary);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            margin-bottom: 0.3rem;
+        }
+
+        .team-role {
+            font-family: var(--font-cyber);
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            color: var(--accent);
             margin-bottom: 1rem;
         }
 
-        .member-bio {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            line-height: 1.6;
+        .team-bio {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        @media (max-width: 768px) {
+            .stat {
+                border-right: none;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .stat:last-child {
+                border-bottom: none;
+            }
         }
     </style>
 </head>
 
 <body class="loading">
+    <div id="loader">
+        <div class="loader-brand">SNEAKER ZOO</div>
+        <div class="loader-bar"></div>
+    </div>
+    <div class="noise-overlay" aria-hidden="true"></div>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <!-- BACKGROUND NOISE -->
-    <div class="noise-overlay"></div>
+    <main id="main-content">
 
-    <!-- DYNAMIC HEADER -->
-    <div id="header-container"></div>
+        <!-- HERO -->
+        <section class="about-hero">
+            <div style="position: relative; z-index: 2;">
+                <p class="chapter-title reveal">OUR STORY</p>
+                <h1 class="display-huge reveal" style="margin-bottom: 1rem;">MANI<br>FESTO</h1>
+                <p class="reveal"
+                    style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); letter-spacing: 0.2em;">
+                    EST. 2026 // STATEN ISLAND, NEW YORK</p>
+            </div>
+        </section>
 
-    <!-- MAIN CONTENT -->
-    <main>
-
-        <!-- SECTION 1: THE MANIFESTO -->
-        <section class="archive-section">
-            <div class="cyber-grid-bg"></div>
-            <div class="archive-hero">
-                <h1 class="kinetic-title">
-                    <span>We Are</span>
-                    <span>The Void</span>
-                    <span>Hunters</span>
-                </h1>
+        <!-- MANIFESTO -->
+        <section class="manifesto-section">
+            <div class="reveal">
                 <p class="manifesto-text">
-                    Sneaker Zoo isn't a store. It's a <span class="highlight">containment facility</span> for the rarest
-                    kinetic footwear on Earth.
-                    <br><br>
-                    Forged in the static of the early web, we hunt down deadstock relics and future grails, preserving
-                    them in our digital archive until you claim them.
+                    <strong>Sneaker Zoo didn't start in a boardroom.</strong> It started in a bedroom on Staten Island,
+                    surrounded by shoeboxes stacked floor-to-ceiling. It started with a simple truth that every
+                    collector knows:
+                    sneakers aren't just shoes.
+                </p>
+                <p class="manifesto-text">
+                    They're <strong>time capsules</strong>. They're the culture you wore on your feet in high school.
+                    They're the pair you regret selling. They're the one you stayed up until midnight to cop.
+                    Every crease, every scuff, every deadstock pair still in its original tissue — it all tells a story.
+                </p>
+            </div>
+
+            <div class="manifesto-highlight reveal">
+                WE DON'T SELL SNEAKERS.<br>
+                WE PRESERVE <span class="text-accent">CULTURAL ARTIFACTS</span>.
+            </div>
+
+            <div class="reveal">
+                <p class="manifesto-text">
+                    Our 38-point authentication protocol isn't marketing — it's obsession. We check stitching patterns,
+                    glue consistency, sole texture, box label fonts, insole printing, lace quality, and twenty-seven
+                    other data points that separate the real from the replica.
+                </p>
+                <p class="manifesto-text">
+                    Because when you buy from the Zoo, you're not just getting shoes.
+                    You're getting a <strong>guarantee</strong>. A piece of history.
+                    Something worth passing down.
                 </p>
             </div>
         </section>
 
-        <!-- SECTION 2: THE PHILOSOPHY -->
-        <section class="archive-section" style="background: #050505;">
-            <div class="content-wrapper"
-                style="display:flex; flex-wrap:wrap; align-items:center; gap:4rem; max-width:1200px; z-index:2;">
-                <div style="flex:1; min-width:300px;">
-                    <h2 class="section-title" style="font-size:3rem; margin-bottom:1rem;">NO FAKES.<br>NO MERCY.</h2>
-                    <p style="color:var(--text-secondary); line-height:1.7;">
-                        Every pair that enters the Zoo undergoes a rigorous <strong>38-point authentication
-                            protocol</strong>. We don't just check the stitching; we check the soul.
-                        If it doesn't vibrate with the right frequency, it gets incinerated.
-                        <br><br>
-                        We believe in the power of the <span style="color:var(--accent)">Artifact</span>. A sneaker is
-                        more than leather and glue—it's a piece of cultural history frozen in time.
-                    </p>
+        <!-- STATS BAR -->
+        <div class="stats-bar reveal">
+            <div class="stat">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">PAIRS AUTHENTICATED</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">AUTHENTIC GUARANTEE</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">38</div>
+                <div class="stat-label">POINT PROTOCOL</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">48h</div>
+                <div class="stat-label">SHIPPING NATIONWIDE</div>
+            </div>
+        </div>
+
+        <!-- VALUES -->
+        <section class="section">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 4rem;" class="reveal">
+                    <p class="chapter-title">WHAT WE STAND FOR</p>
+                    <h2 class="display-medium">OUR<br><span class="text-accent">VALUES</span></h2>
                 </div>
-                <div style="flex:1; min-width:300px; display:flex; justify-content:center;">
-                    <!-- Abstract Visual Representation -->
-                    <div
-                        style="width:300px; height:300px; border:2px solid var(--hologram); border-radius:50%; display:flex; align-items:center; justify-content:center; position:relative; animation: rotateRing 10s linear infinite;">
-                        <div
-                            style="width:200px; height:200px; border:2px solid var(--accent); border-radius:50%; position:absolute; animation: rotateRing 5s linear infinite reverse;">
-                        </div>
-                        <div
-                            style="width:400px; height:2px; background:var(--bg-glass); position:absolute; transform:rotate(45deg);">
-                        </div>
-                        <span style="font-family:'Syncopate'; color:white; font-size:2rem; font-weight:700;">PURE</span>
+
+                <div class="values-grid stagger-children">
+                    <div class="value-card">
+                        <div class="value-icon">🔒</div>
+                        <div class="value-title">AUTHENTICATION FIRST</div>
+                        <p class="value-desc">Every single item passes our 38-point inspection before it enters the
+                            archive. No exceptions. No shortcuts. No fakes.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">🤝</div>
+                        <div class="value-title">COMMUNITY DRIVEN</div>
+                        <p class="value-desc">We grew from the community and we serve it. Our prices are fair, our
+                            service is personal, and our doors are always open.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">🏛️</div>
+                        <div class="value-title">PRESERVING CULTURE</div>
+                        <p class="value-desc">Sneakers are cultural currency. We treat every pair with museum-grade care
+                            until it finds its next home.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">🌍</div>
+                        <div class="value-title">STATEN ISLAND ROOTS</div>
+                        <p class="value-desc">Born on the Island, shipping worldwide. Our home base isn't just a
+                            location — it's our identity. Local heart, global reach.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 3: THE TEAM -->
-        <section class="archive-section">
-            <h2 class="section-title" style="margin-bottom:3rem; text-align:center;">ARCHITECTS</h2>
-            <div class="team-grid">
-                <!-- Curator -->
-                <article class="team-card">
-                    <span class="member-role">HEAD CURATOR</span>
-                    <h3 class="member-name">Anonymous</h3>
-                    <p class="member-bio">The mysterious founder. Rumored to own the only pair of AJ1s worn on the moon.
-                        obsession with brutalist architecture and clean code.</p>
-                </article>
+        <!-- TEAM -->
+        <section class="section" style="background: var(--surface); border-top: 1px solid var(--line);">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 4rem;" class="reveal">
+                    <p class="chapter-title">THE PEOPLE</p>
+                    <h2 class="display-medium">THE<br><span class="text-accent">TEAM</span></h2>
+                </div>
 
-                <!-- Auth -->
-                <article class="team-card">
-                    <span class="member-role">LEAD AUTHENTICATOR</span>
-                    <h3 class="member-name">Unit 734</h3>
-                    <p class="member-bio">An AI-assisted human hybrid specializing in material analysis. Can spot a fake
-                        stitching pattern from 300 yards away.</p>
-                </article>
-
-                <!-- Logistics -->
-                <article class="team-card">
-                    <span class="member-role">LOGISTICS</span>
-                    <h3 class="member-name">Viper</h3>
-                    <p class="member-bio">Ensures the payload is delivered. Zero lost packages in 5 years. Operates
-                        entirely at night.</p>
-                </article>
+                <div class="team-grid stagger-children">
+                    <div class="team-card">
+                        <div class="team-avatar">🦧</div>
+                        <div class="team-name">THE FOUNDER</div>
+                        <div class="team-role">CHIEF ARCHITECT</div>
+                        <p class="team-bio">Started collecting in 2018. Turned an obsession into a business.
+                            Authenticates every pair personally.</p>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar">🦍</div>
+                        <div class="team-name">THE CURATOR</div>
+                        <div class="team-role">HEAD OF ACQUISITIONS</div>
+                        <p class="team-bio">Knows every release date since 2005. Sources rare pairs from private
+                            collections and estate sales worldwide.</p>
+                    </div>
+                    <div class="team-card">
+                        <div class="team-avatar">🐍</div>
+                        <div class="team-name">THE OPERATOR</div>
+                        <div class="team-role">LOGISTICS & FULFILLMENT</div>
+                        <p class="team-bio">Double-boxed, bubble-wrapped, and shipped with love. Makes sure every order
+                            arrives museum-grade.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- CTA -->
-        <section class="archive-section" style="min-height:50vh;">
-            <h2
-                style="font-family:'Syncopate'; font-size:clamp(2rem, 5vw, 4rem); text-align:center; margin-bottom:2rem;">
-                JOIN THE HUNT</h2>
-            <a href="showcase.html" class="btn-primary" style="transform:scale(1.2);">VIEW ARCHIVE</a>
+        <section style="padding: 8rem 0; text-align: center; border-top: 1px solid var(--line);">
+            <div class="container reveal">
+                <p class="chapter-title">JOIN THE ZOO</p>
+                <h2 class="display-medium" style="margin-bottom: 2rem;">START<br><span
+                        class="text-accent">COLLECTING</span></h2>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="showcase.html" class="btn-accent"><span>BROWSE ARCHIVE</span></a>
+                    <a href="contact.html" class="btn-magnet">GET IN TOUCH</a>
+                </div>
+            </div>
         </section>
 
     </main>
 
-    <!-- DYNAMIC FOOTER -->
     <div id="footer-container"></div>
 
     <script src="data.js"></script>
     <script src="script.js"></script>
-    <script>
-        // Local animation script for the ring
-        document.body.insertAdjacentHTML('beforeend', `<style>@keyframes rotateRing { to { transform: rotate(360deg); } }</style>`);
-    </script>
 </body>
 
 </html>

@@ -4,195 +4,295 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SNEAKER ZOO // PROTOCOL</title>
-    <meta name="description" content="Operational protocols, shipping logistics, and authentication standards.">
-
-    <!-- Fonts & Styles -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&family=Syne:wght@400;700;800&family=Syncopate:wght@400;700&display=swap"
-        rel="stylesheet">
+    <title>SNEAKER ZOO // FAQ</title>
+    <meta name="description"
+        content="Frequently asked questions about Sneaker Zoo. Shipping, returns, authentication, and more.">
+    <link rel="icon" type="image/jpeg" href="favicon.jpeg">
     <link rel="stylesheet" href="styles.css">
-
     <style>
-        .faq-wrapper {
-            max-width: 800px;
-            margin: 6rem auto;
-            padding: 0 2rem;
-        }
-
-        .faq-header {
+        .faq-hero {
+            padding: 14rem 0 4rem;
             text-align: center;
-            margin-bottom: 4rem;
         }
 
-        .faq_title {
-            font-family: 'Syncopate', sans-serif;
-            font-size: clamp(2rem, 5vw, 3rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 var(--pad) 6rem;
+        }
+
+        .faq-category {
+            margin-bottom: 3rem;
+        }
+
+        .faq-category-title {
+            font-family: var(--font-cyber);
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px solid var(--line);
         }
 
         .faq-item {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 0.5rem;
+            border-bottom: 1px solid var(--line);
         }
 
         .faq-question {
             width: 100%;
-            text-align: left;
             background: none;
             border: none;
+            text-align: left;
             padding: 1.5rem 0;
-            color: var(--text-primary);
-            font-family: 'Syne', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 700;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: color 0.3s ease;
+            color: var(--text-primary);
+            font-family: var(--font-head);
+            font-weight: 600;
+            font-size: 1rem;
+            text-transform: uppercase;
+            transition: color 0.2s;
         }
 
         .faq-question:hover {
             color: var(--accent);
         }
 
-        .faq-question::after {
-            content: '+';
-            font-family: 'Syncopate', sans-serif;
-            font-size: 1.5rem;
-            transition: transform 0.3s ease;
+        .faq-question .faq-toggle {
+            font-size: 1.2rem;
+            transition: transform 0.3s var(--ease-out-expo);
+            color: var(--text-muted);
         }
 
-        .faq-item.active .faq-question::after {
+        .faq-item.open .faq-toggle {
             transform: rotate(45deg);
+            color: var(--accent);
         }
 
         .faq-answer {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            color: var(--text-secondary);
-            line-height: 1.6;
-            padding-right: 2rem;
+            transition: max-height 0.4s var(--ease-out-expo), padding 0.3s;
         }
 
-        .faq-item.active .faq-answer {
-            max-height: 200px;
-            /* Approximate max height */
+        .faq-item.open .faq-answer {
+            max-height: 400px;
             padding-bottom: 1.5rem;
         }
 
-        /* Support Grid */
-        .support-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            max-width: 1000px;
-            margin: 4rem auto;
-            padding: 0 2rem;
+        .faq-answer p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .faq-cta {
             text-align: center;
-        }
-
-        .support-card {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
-        }
-
-        .support-card:hover {
-            background: rgba(255, 255, 255, 0.05);
-            border-color: var(--hologram);
-        }
-
-        .icon-box {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--accent);
+            padding: 4rem 2rem;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            margin-top: 3rem;
         }
     </style>
 </head>
 
 <body class="loading">
-    <div class="noise-overlay"></div>
-    <div id="header-container"></div>
+    <div id="loader">
+        <div class="loader-brand">SNEAKER ZOO</div>
+        <div class="loader-bar"></div>
+    </div>
+    <div class="noise-overlay" aria-hidden="true"></div>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <main>
-        <div class="faq-wrapper">
-            <header class="faq-header">
-                <h1 class="faq_title">PROTOCOL <span style="color:var(--accent)">FAQ</span></h1>
-                <p>Common inquiries regarding the acquisition of kinetic assets.</p>
-            </header>
+    <main id="main-content">
 
-            <div class="faq-list">
-                <!-- 1 -->
-                <div class="faq-item">
-                    <button class="faq-question">Are these authentic?</button>
-                    <div class="faq-answer">
-                        <p>Observation absolute. Every item is verified by our proprietory 3-stage authentication
-                            process, including UV spectrography and material density analysis.</p>
-                    </div>
-                </div>
-
-                <!-- 2 -->
-                <div class="faq-item">
-                    <button class="faq-question">What is "Kinetic" shipping?</button>
-                    <div class="faq-answer">
-                        <p>We use expedited courier networks. Domestic orders arrive within 48-72 hours. International
-                            secure transport takes 5-7 business days.</p>
-                    </div>
-                </div>
-
-                <!-- 3 -->
-                <div class="faq-item">
-                    <button class="faq-question">Can I return an item?</button>
-                    <div class="faq-answer">
-                        <p>We accept returns on "deadstock" items within 14 days, provided the verification tag remains
-                            intact. Once the tag is broken, the asset is yours forever.</p>
-                    </div>
-                </div>
-                <!-- 4 -->
-                <div class="faq-item">
-                    <button class="faq-question">Do you accept Crypto?</button>
-                    <div class="faq-answer">
-                        <p>Currently, we process payments via Stripe (Credit/Debit) and Apple Pay. Blockchain
-                            integration is on the Phase 4 roadmap.</p>
-                    </div>
-                </div>
-            </div>
+        <div class="faq-hero">
+            <p class="chapter-title reveal">HELP CENTER</p>
+            <h1 class="display-medium reveal">FREQUENTLY<br><span class="text-accent">ASKED</span></h1>
         </div>
 
-        <section class="support-grid">
-            <div class="support-card">
-                <div class="icon-box">✉️</div>
-                <h3>EMAIL INTEL</h3>
-                <p>support@sneakerzoo.com</p>
+        <div class="faq-container">
+
+            <!-- SHOPPING -->
+            <div class="faq-category reveal">
+                <h2 class="faq-category-title">SHOPPING & ORDERS</h2>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How do I place an order?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Browse our archive, select your item, choose your size, and add to cart. When you're ready,
+                            head to checkout, fill in your shipping and payment details, and confirm your order. You'll
+                            receive a confirmation email immediately.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What payment methods do you accept?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We accept all major credit cards (Visa, Mastercard, Amex, Discover) through our secure
+                            checkout. All transactions are encrypted with 256-bit SSL.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Can I modify or cancel my order?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Orders can be modified or cancelled within 1 hour of placement. After that, we begin
+                            processing and cannot guarantee changes. Contact us at support@sneakerzoo.com immediately if
+                            you need to make changes.</p>
+                    </div>
+                </div>
             </div>
-            <div class="support-card">
-                <div class="icon-box">💬</div>
-                <h3>LIVE SIGNAL</h3>
-                <p>Available 09:00 - 18:00 EST</p>
+
+            <!-- SHIPPING -->
+            <div class="faq-category reveal">
+                <h2 class="faq-category-title">SHIPPING & DELIVERY</h2>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How long does shipping take?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Domestic orders ship within 48–72 hours via USPS Priority or UPS Ground. Most orders arrive
+                            within 3–5 business days. International shipping is available on request — contact us for a
+                            quote.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Do you ship internationally?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, we ship worldwide on select items. International orders are fully insured and tracked.
+                            Contact us at support@sneakerzoo.com for international shipping rates and availability.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Is shipping free?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Free shipping on all domestic orders. Every package is double-boxed, insured, and shipped
+                            with tracking. We treat your purchase like it's our own collection.</p>
+                    </div>
+                </div>
             </div>
-        </section>
+
+            <!-- RETURNS -->
+            <div class="faq-category reveal">
+                <h2 class="faq-category-title">RETURNS & EXCHANGES</h2>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What is your return policy?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We accept returns within 14 days of delivery on deadstock items in original condition with
+                            all tags and packaging. Items must not be worn, tried on, or altered. Refunds are processed
+                            within 3–5 business days of receiving the return.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Can I exchange for a different size?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Due to the limited nature of our inventory, exchanges are subject to availability. If your
+                            size is in stock, we're happy to arrange an exchange. Contact us within 14 days of delivery.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AUTHENTICATION -->
+            <div class="faq-category reveal">
+                <h2 class="faq-category-title">AUTHENTICATION</h2>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How do you authenticate items?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Every item passes our 38-point authentication protocol. We inspect stitching patterns,
+                            materials, glue consistency, sole construction, labeling, box details, and 32 other data
+                            points. Our team has processed over 500 pairs and maintains a 100% authenticity guarantee.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Can you authenticate my shoes?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! We offer authentication services for a flat fee. Send clear photos (minimum 8 angles) to
+                            support@sneakerzoo.com or visit us in person at our Staten Island location. Walk-ins welcome
+                            during business hours.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What if I receive a fake item?</span>
+                        <span class="faq-toggle">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>This will never happen. But if for any reason an item fails third-party authentication, we
+                            offer a full refund plus return shipping. Our reputation is built on trust, and we stake our
+                            name on every sale.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STILL NEED HELP -->
+            <div class="faq-cta reveal">
+                <h3 style="font-family: var(--font-head); font-size: 1.3rem; margin-bottom: 1rem;">STILL HAVE QUESTIONS?
+                </h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.9rem;">We respond to every
+                    message within 24 hours.</p>
+                <a href="contact.html" class="btn-accent"><span>CONTACT US</span></a>
+            </div>
+
+        </div>
 
     </main>
 
     <div id="footer-container"></div>
+
+    <script src="data.js"></script>
     <script src="script.js"></script>
     <script>
-        // Local script for accordion logic
-        document.querySelectorAll('.faq-question').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const item = btn.parentElement;
-                // Close others
-                document.querySelectorAll('.faq-item').forEach(i => {
-                    if (i !== item) i.classList.remove('active');
-                });
-                item.classList.toggle('active');
+        // Accordion
+        document.querySelectorAll('.faq-question').forEach(q => {
+            q.addEventListener('click', () => {
+                const item = q.parentElement;
+                const wasOpen = item.classList.contains('open');
+                // Close all
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+                // Toggle clicked
+                if (!wasOpen) item.classList.add('open');
             });
         });
     </script>

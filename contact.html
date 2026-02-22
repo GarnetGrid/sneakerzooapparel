@@ -4,215 +4,226 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SNEAKER ZOO // TRANSMISSION</title>
-    <meta name="description"
-        content="Establish connection with the Sneaker Zoo network. Support and general inquiries.">
-
-    <!-- Fonts & Styles -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&family=Syne:wght@400;700;800&family=Syncopate:wght@400;700&display=swap"
-        rel="stylesheet">
+    <title>SNEAKER ZOO // CONTACT</title>
+    <meta name="description" content="Get in touch with Sneaker Zoo. Visit us on Staten Island or send a message.">
+    <link rel="icon" type="image/jpeg" href="favicon.jpeg">
     <link rel="stylesheet" href="styles.css">
-
     <style>
-        .contact-layout {
+        .contact-hero {
+            padding: 14rem 0 4rem;
+            text-align: center;
+        }
+
+        .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            min-height: 80vh;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
             gap: 4rem;
-            align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 var(--pad) 6rem;
         }
 
-        @media (max-width: 900px) {
-            .contact-layout {
-                grid-template-columns: 1fr;
-            }
+        .contact-block {
+            margin-bottom: 2.5rem;
         }
 
-        .contact-info {
-            padding-right: 2rem;
-        }
-
-        .contact_title {
-            font-family: 'Syncopate', sans-serif;
-            font-size: clamp(2rem, 5vw, 4rem);
-            font-weight: 700;
-            line-height: 1;
-            margin-bottom: 2rem;
-            color: white;
-        }
-
-        .info-block {
-            margin-bottom: 2rem;
-            border-left: 2px solid var(--accent);
-            padding-left: 1rem;
-        }
-
-        .info-label {
-            font-family: 'Syncopate', sans-serif;
+        .contact-block-title {
+            font-family: var(--font-cyber);
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
             color: var(--text-muted);
-            font-size: 0.8rem;
-            margin-bottom: 0.5rem;
-            display: block;
+            margin-bottom: 0.8rem;
         }
 
-        .info-value {
-            font-family: 'Syne', sans-serif;
-            font-size: 1.2rem;
-            color: white;
-        }
-
-        /* FORM */
-        .contact-form {
-            background: rgba(255, 255, 255, 0.02);
-            padding: 3rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-        }
-
-        .form-group {
-            position: relative;
-            margin-bottom: 2rem;
-        }
-
-        .form-input {
-            width: 100%;
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 1rem 0;
-            color: white;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+        .contact-block-value {
+            font-family: var(--font-head);
+            font-weight: 600;
             font-size: 1rem;
-            transition: all 0.3s ease;
         }
 
-        .form-input:focus {
-            outline: none;
-            border-bottom-color: var(--accent);
+        .contact-block-value a {
+            transition: color 0.2s;
         }
 
-        .form-label {
-            position: absolute;
-            top: 1rem;
-            left: 0;
-            color: var(--text-muted);
-            pointer-events: none;
-            transition: all 0.3s ease;
-            font-family: 'Syncopate', sans-serif;
-            font-size: 0.8rem;
-        }
-
-        .form-input:focus~.form-label,
-        .form-input:not(:placeholder-shown)~.form-label {
-            top: -1rem;
-            font-size: 0.7rem;
+        .contact-block-value a:hover {
             color: var(--accent);
         }
 
-        .btn-submit {
-            width: 100%;
-            background: var(--text-primary);
-            color: var(--bg-dark);
-            border: none;
-            padding: 1.5rem;
-            font-family: 'Syncopate', sans-serif;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .contact-detail {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-top: 0.3rem;
         }
 
-        .btn-submit:hover {
-            background: var(--accent);
-            color: white;
-            letter-spacing: 2px;
+        /* Contact Form */
+        .contact-form-field {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-form-field label {
+            display: block;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-form-field input,
+        .contact-form-field textarea,
+        .contact-form-field select {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--line-strong);
+            color: var(--text-primary);
+            padding: 0.9rem 1rem;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .contact-form-field textarea {
+            resize: vertical;
+            min-height: 140px;
+        }
+
+        .contact-form-field select option {
+            background: var(--void);
+        }
+
+        .contact-form-field input:focus,
+        .contact-form-field textarea:focus,
+        .contact-form-field select:focus {
+            border-color: var(--accent);
+        }
+
+        .map-placeholder {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            padding: 3rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
         }
     </style>
 </head>
 
 <body class="loading">
-    <div class="noise-overlay"></div>
-    <div id="header-container"></div>
+    <div id="loader">
+        <div class="loader-brand">SNEAKER ZOO</div>
+        <div class="loader-bar"></div>
+    </div>
+    <div class="noise-overlay" aria-hidden="true"></div>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <main>
-        <div class="contact-layout">
-            <!-- Left Info -->
-            <div class="contact-info">
-                <h1 class="contact_title">SIGNAL<br><span style="color:var(--accent)">COMMAND</span></h1>
+    <main id="main-content">
 
-                <p style="color:var(--text-secondary); margin-bottom:3rem; line-height:1.6;">
-                    Our operators are active on the network 24/7. Transmit your query regarding order status,
-                    acquisition requests, or protocol violations.
-                </p>
+        <div class="contact-hero">
+            <p class="chapter-title reveal">REACH OUT</p>
+            <h1 class="display-medium reveal">GET IN<br><span class="text-accent">TOUCH</span></h1>
+        </div>
 
-                <div class="info-block">
-                    <span class="info-label">PHYSICAL NODE</span>
-                    <div class="info-value">2481 Richmond Rd<br>Staten Island, NY 10306</div>
+        <div class="contact-grid">
+
+            <!-- LEFT: INFO -->
+            <div class="reveal-left">
+                <div class="contact-block">
+                    <div class="contact-block-title">LOCATION</div>
+                    <div class="contact-block-value">2481 Richmond Rd</div>
+                    <div class="contact-detail">Staten Island, NY 10306</div>
                 </div>
 
-                <div class="info-block">
-                    <span class="info-label">SECURE LINE</span>
-                    <div class="info-value">support@sneakerzoo.com</div>
+                <div class="contact-block">
+                    <div class="contact-block-title">HOURS</div>
+                    <div class="contact-block-value">DAILY // 11:00 — 19:00 EST</div>
+                    <div class="contact-detail">Walk-ins welcome. Appointments for authentication.</div>
                 </div>
 
-                <div class="info-block">
-                    <span class="info-label">OPERATION HOURS</span>
-                    <div class="info-value">DAILY // 11:00 — 19:00 EST</div>
+                <div class="contact-block">
+                    <div class="contact-block-title">EMAIL</div>
+                    <div class="contact-block-value"><a href="mailto:support@sneakerzoo.com">support@sneakerzoo.com</a>
+                    </div>
+                </div>
+
+                <div class="contact-block">
+                    <div class="contact-block-title">RESPONSE TIME</div>
+                    <div class="contact-block-value">WITHIN 24 HOURS</div>
+                    <div class="contact-detail">We reply to every message personally.</div>
+                </div>
+
+                <div class="map-placeholder">
+                    <p
+                        style="font-family: var(--font-cyber); font-size: 0.6rem; letter-spacing: 0.2em; color: var(--text-muted);">
+                        📍 STATEN ISLAND, NY</p>
+                    <p style="font-family: var(--font-head); font-size: 1.2rem; margin-top: 0.5rem;">2481 RICHMOND RD
+                    </p>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">Between Arden Ave &
+                        Arthur Kill Rd</p>
                 </div>
             </div>
 
-            <!-- Right Form -->
-            <div class="contact-form">
-                <form id="contact-form">
-                    <div class="form-group">
-                        <input type="text" class="form-input" id="c-name" placeholder=" " required>
-                        <label class="form-label">IDENTITY (NAME)</label>
+            <!-- RIGHT: FORM -->
+            <div class="reveal-right">
+                <form id="contact-form" action="https://formspree.io/f/xdalgqdp" method="POST">
+                    <div class="contact-form-field">
+                        <label for="cf-name">YOUR NAME</label>
+                        <input type="text" id="cf-name" name="name" required>
+                    </div>
+                    <div class="contact-form-field">
+                        <label for="cf-email">YOUR EMAIL</label>
+                        <input type="email" id="cf-email" name="email" required>
+                    </div>
+                    <div class="contact-form-field">
+                        <label for="cf-subject">SUBJECT</label>
+                        <select id="cf-subject" name="subject">
+                            <option value="general">GENERAL INQUIRY</option>
+                            <option value="authentication">AUTHENTICATION REQUEST</option>
+                            <option value="consignment">CONSIGNMENT</option>
+                            <option value="order">ORDER SUPPORT</option>
+                            <option value="wholesale">WHOLESALE</option>
+                            <option value="press">PRESS / MEDIA</option>
+                        </select>
+                    </div>
+                    <div class="contact-form-field">
+                        <label for="cf-message">YOUR MESSAGE</label>
+                        <textarea id="cf-message" name="message" required
+                            placeholder="Tell us what you need..."></textarea>
                     </div>
 
-                    <div class="form-group">
-                        <input type="email" class="form-input" id="c-email" placeholder=" " required>
-                        <label class="form-label">FREQUENCY (EMAIL)</label>
-                    </div>
+                    <button type="submit" class="btn-accent full-width" style="padding: 1.1rem;">
+                        <span>SEND MESSAGE</span>
+                    </button>
 
-                    <div class="form-group">
-                        <textarea class="form-input" id="c-msg" rows="3" placeholder=" " required></textarea>
-                        <label class="form-label">TRANSMISSION (MESSAGE)</label>
-                    </div>
-
-                    <button type="submit" class="btn-submit">TRANSMIT SIGNAL</button>
+                    <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 1rem; text-align: center;">
+                        We typically respond within 24 hours.
+                    </p>
                 </form>
             </div>
+
         </div>
+
     </main>
 
     <div id="footer-container"></div>
+
+    <script src="data.js"></script>
     <script src="script.js"></script>
     <script>
-        // Form Handling
-        document.getElementById('contact-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const btn = e.target.querySelector('button');
-            const originalText = btn.innerText;
-
-            btn.innerText = 'TRANSMITTING...';
-            btn.style.opacity = '0.7';
-
-            setTimeout(() => {
-                btn.innerText = 'SIGNAL RECEIVED';
-                btn.style.background = '#00ff00';
-                // Reset
-                setTimeout(() => {
-                    e.target.reset();
-                    btn.innerText = originalText;
-                    btn.style.background = '';
-                    btn.style.opacity = '1';
-                }, 2000);
-            }, 1500);
+        // Enhance form submission
+        document.getElementById('contact-form').addEventListener('submit', function (e) {
+            const btn = this.querySelector('button');
+            btn.querySelector('span').textContent = 'SENDING...';
+            btn.disabled = true;
+            // Formspree will handle the actual submission & redirect
         });
     </script>
 </body>

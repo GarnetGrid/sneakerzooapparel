@@ -5,42 +5,268 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SNEAKER ZOO // ARTIFACT</title>
-    <meta name="description" content="Detailed analysis of the selected kinetic artifact.">
+    <meta name="description" content="Detailed view of the selected artifact from the Sneaker Zoo archive.">
+    <link rel="icon" type="image/jpeg" href="favicon.jpeg">
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        .pdp-image {
+            background: var(--void-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-right: 1px solid var(--line);
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+        }
+
+        .pdp-image img {
+            width: 70%;
+            max-width: 500px;
+            object-fit: contain;
+            filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.5));
+            transition: transform 0.6s var(--ease-out-expo);
+        }
+
+        .pdp-image:hover img {
+            transform: scale(1.05) rotate(-2deg);
+        }
+
+        .pdp-image .image-label {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 0.15em;
+        }
+
+        .pdp-info {
+            padding: 8rem 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 600px;
+        }
+
+        .pdp-breadcrumb {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+            margin-bottom: 2rem;
+        }
+
+        .pdp-breadcrumb a:hover {
+            color: var(--text-primary);
+        }
+
+        .pdp-name {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 0.5rem;
+        }
+
+        .pdp-variant {
+            font-family: var(--font-head);
+            font-size: 1.3rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .pdp-desc {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+        }
+
+        .pdp-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .pdp-meta-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pdp-meta-label {
+            font-family: var(--font-cyber);
+            font-size: 0.55rem;
+            letter-spacing: 0.2em;
+            color: var(--text-muted);
+            margin-bottom: 0.3rem;
+        }
+
+        .pdp-meta-value {
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .pdp-price {
+            font-family: var(--font-head);
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+        }
+
+        /* Size Selector */
+        .size-grid {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .size-btn {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--line-strong);
+            background: transparent;
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .size-btn:hover {
+            border-color: var(--text-primary);
+            color: var(--text-primary);
+        }
+
+        .size-btn.selected {
+            background: var(--text-primary);
+            color: var(--void);
+            border-color: var(--text-primary);
+        }
+
+        .pdp-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .pdp-actions .btn-accent {
+            flex: 1;
+            padding: 1.2rem;
+        }
+
+        .pdp-guarantee {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--line);
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .pdp-guarantee-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 900px) {
+            .pdp-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pdp-image {
+                min-height: 50vh;
+                border-right: none;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .pdp-info {
+                padding: 3rem 1.5rem;
+            }
+        }
+    </style>
 </head>
 
-<body style="overflow: hidden;"> <!-- Split layout often needs hidden overflow -->
+<body class="loading">
+    <div id="loader">
+        <div class="loader-brand">SNEAKER ZOO</div>
+        <div class="loader-bar"></div>
+    </div>
+    <div class="noise-overlay" aria-hidden="true"></div>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <header id="bespoke-header" style="position: fixed; top: 0; width: 100%; padding: 2rem; z-index: 100;">
-        <!-- DYNAMIC HEADER INJECTED BY JS -->
-    </header>
+    <main id="main-content" class="pdp-grid">
 
-    <main style="display: grid; grid-template-columns: 1fr 1fr; height: 100vh;">
-
-        <!-- VISUAL (HOLOGRAM) -->
-        <div id="hologram-container"
-            style="background: #050505; display: flex; align-items: center; justify-content: center; border-right: 1px solid var(--line); overflow: hidden; position: relative;">
-            <!-- CANVAS INJECTED BY THREE.JS -->
+        <!-- LEFT: IMAGE -->
+        <div class="pdp-image" id="pdp-image-container">
+            <img id="pdp-img" src="" alt="Product image">
+            <span class="image-label" id="pdp-image-label">LOADING...</span>
         </div>
 
-        <!-- INFO -->
-        <div style="padding: 10vh 5vw; display: flex; flex-direction: column; justify-content: center;">
-            <h1 id="p-name" style="font-size: 4rem; margin-bottom: 1rem;">LOADING...</h1>
-            <div id="p-variant"
-                style="font-family: var(--font-head); font-size: 1.5rem; color: var(--hologram); margin-bottom: 2rem;">
-                Please Wait...</div>
-
-            <p id="p-desc" style="font-family: var(--font-body); margin-bottom: 3rem; max-width: 400px; opacity: 0.8;">
-                Fetching archival data...
-            </p>
-
-            <div style="margin-bottom: 3rem;">
-                <input type="text" class="input-bespoke" placeholder="SELECT SIZE (US)" style="margin-bottom: 1rem;">
-                <div id="p-price" style="font-family: var(--font-head); font-size: 2rem; margin-top: 1rem;">---</div>
+        <!-- RIGHT: INFO -->
+        <div class="pdp-info">
+            <div class="pdp-breadcrumb">
+                <a href="index.html">HOME</a> / <a href="showcase.html">ARCHIVE</a> / <span id="pdp-crumb">...</span>
             </div>
 
-            <button id="btn-add" class="btn-magnet" style="align-self: flex-start;">ADD TO CART</button>
+            <h1 class="pdp-name" id="p-name">LOADING...</h1>
+            <div class="pdp-variant" id="p-variant">Please Wait...</div>
+            <p class="pdp-desc" id="p-desc">Fetching archival data...</p>
+
+            <div class="pdp-meta" id="pdp-meta">
+                <div class="pdp-meta-item">
+                    <span class="pdp-meta-label">BRAND</span>
+                    <span class="pdp-meta-value" id="pdp-brand">—</span>
+                </div>
+                <div class="pdp-meta-item">
+                    <span class="pdp-meta-label">YEAR</span>
+                    <span class="pdp-meta-value" id="pdp-year">—</span>
+                </div>
+                <div class="pdp-meta-item">
+                    <span class="pdp-meta-label">CATEGORY</span>
+                    <span class="pdp-meta-value" id="pdp-category">—</span>
+                </div>
+                <div class="pdp-meta-item">
+                    <span class="pdp-meta-label">STATUS</span>
+                    <span class="pdp-meta-value" style="color: var(--accent);">IN STOCK</span>
+                </div>
+            </div>
+
+            <div class="pdp-price" id="p-price">$—</div>
+
+            <!-- SIZE SELECTOR -->
+            <p class="chapter-title" style="margin-bottom: 0.8rem;">SELECT SIZE (US)</p>
+            <div class="size-grid" id="size-grid">
+                <button class="size-btn" data-size="7">7</button>
+                <button class="size-btn" data-size="7.5">7.5</button>
+                <button class="size-btn" data-size="8">8</button>
+                <button class="size-btn" data-size="8.5">8.5</button>
+                <button class="size-btn" data-size="9">9</button>
+                <button class="size-btn" data-size="9.5">9.5</button>
+                <button class="size-btn" data-size="10">10</button>
+                <button class="size-btn" data-size="10.5">10.5</button>
+                <button class="size-btn" data-size="11">11</button>
+                <button class="size-btn" data-size="12">12</button>
+                <button class="size-btn" data-size="13">13</button>
+            </div>
+
+            <div class="pdp-actions">
+                <button id="btn-add" class="btn-accent" disabled>
+                    <span>SELECT A SIZE</span>
+                </button>
+                <button id="btn-buy" class="btn-magnet" disabled>BUY NOW</button>
+            </div>
+
+            <div class="pdp-guarantee">
+                <div class="pdp-guarantee-item">🔒 Authenticated</div>
+                <div class="pdp-guarantee-item">📦 Free Shipping</div>
+                <div class="pdp-guarantee-item">↩️ 14-Day Returns</div>
+            </div>
         </div>
 
     </main>

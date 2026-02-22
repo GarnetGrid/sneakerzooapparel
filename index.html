@@ -2,44 +2,193 @@
 <html lang="en">
 
 <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>SNEAKER ZOO // FUTURE COMMERCE</title>
-      <meta name="description"
-            content="The world's premier destination for kinetic footwear and rare digital artifacts. Est. 2026.">
-      <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNEAKER ZOO — Staten Island's Premier Sneaker Boutique</title>
+    <meta name="description"
+        content="Authenticated deadstock, rare grails, and premium streetwear. Staten Island's most trusted sneaker archive since 2026.">
+    <meta property="og:title" content="SNEAKER ZOO — Walk With Power">
+    <meta property="og:description" content="Authenticated deadstock, rare grails, and premium streetwear.">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/jpeg" href="favicon.jpeg">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>
+<body class="loading">
 
-      <!-- STEP 3: CUSTOM HEADER (Placeholder) -->
-      <!-- Header injected by script.js -->
+    <!-- LOADER -->
+    <div id="loader">
+        <div class="loader-brand">SNEAKER ZOO</div>
+        <div class="loader-bar"></div>
+    </div>
 
-      <main class="full-height flex-center" style="flex-direction: column; position: relative;">
+    <!-- GRAIN -->
+    <div class="noise-overlay" aria-hidden="true"></div>
 
-            <!-- HERO TEXT -->
-            <h1 style="font-size: 15vw; text-align: center; line-height: 0.8; margin-bottom: 2rem;">
-                  WALK<br>WITH<br><span
-                        style="color: transparent; -webkit-text-stroke: 2px var(--hologram);">POWER</span>
-            </h1>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
-            <div
-                  style="font-family: var(--font-body); max-width: 400px; text-align: center; margin-bottom: 3rem; opacity: 0.7;">
-                  UNIFIED COLLECTION V19. STATEN ISLAND, NY.<br>
-                  PREMIUM STREETWEAR & FOOTWEAR CURATION.
+    <!-- HEADER injected by JS -->
+
+    <main id="main-content">
+
+        <!-- ═══ HERO ═══ -->
+        <section class="hero">
+            <div class="hero-grid"></div>
+            <div class="hero-glow"></div>
+
+            <div class="hero-badge">
+                <span class="pulse-dot"></span>
+                <span>EST. 2026 // STATEN ISLAND, NY</span>
             </div>
 
-            <a href="showcase.html" class="btn-magnet">ENTER ARCHIVE</a>
+            <h1 class="hero-title">
+                <span>WALK</span><br>
+                <span>WITH</span><br>
+                <span class="stroke-text">POWER</span>
+            </h1>
 
-      </main>
+            <p class="hero-subtitle">
+                Authenticated deadstock. Rare grails. Premium streetwear.<br>
+                Curated for those who understand the culture.
+            </p>
 
-      <!-- STEP 4: CUSTOM FOOTER (Placeholder) -->
-      <footer
-            style="position: fixed; bottom: 0; width: 100%; padding: 2rem; text-align: center; opacity: 0.5; font-size: 12px;">
-            SCROLL TO EXPLORE // ©2026 SNEAK ZOO
-      </footer>
+            <div style="display: flex; gap: 1rem; position: relative; z-index: 2; flex-wrap: wrap; justify-content: center;">
+                <a href="showcase.html" class="btn-magnet">ENTER ARCHIVE</a>
+                <a href="drops.html" class="btn-gallery">UPCOMING DROPS</a>
+            </div>
+        </section>
 
-      <script src="script.js"></script>
+        <!-- ═══ MARQUEE ═══ -->
+        <div class="marquee">
+            <div class="marquee-track">
+                <span>AUTHENTICATED <span class="accent-dot">●</span></span>
+                <span>DEADSTOCK <span class="accent-dot">●</span></span>
+                <span>PREMIUM <span class="accent-dot">●</span></span>
+                <span>RARE <span class="accent-dot">●</span></span>
+                <span>STATEN ISLAND <span class="accent-dot">●</span></span>
+                <span>CULTURE <span class="accent-dot">●</span></span>
+                <span>GRAILS <span class="accent-dot">●</span></span>
+                <span>STREETWEAR <span class="accent-dot">●</span></span>
+                <!-- Duplicate for seamless loop -->
+                <span>AUTHENTICATED <span class="accent-dot">●</span></span>
+                <span>DEADSTOCK <span class="accent-dot">●</span></span>
+                <span>PREMIUM <span class="accent-dot">●</span></span>
+                <span>RARE <span class="accent-dot">●</span></span>
+                <span>STATEN ISLAND <span class="accent-dot">●</span></span>
+                <span>CULTURE <span class="accent-dot">●</span></span>
+                <span>GRAILS <span class="accent-dot">●</span></span>
+                <span>STREETWEAR <span class="accent-dot">●</span></span>
+            </div>
+        </div>
+
+        <!-- ═══ FEATURED PRODUCTS ═══ -->
+        <section class="section">
+            <div class="container">
+                <div class="reveal" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; flex-wrap: wrap; gap: 1rem;">
+                    <div>
+                        <p class="chapter-title">CURATED SELECTION</p>
+                        <h2 class="display-medium">Featured<br><span class="text-accent">Grails</span></h2>
+                    </div>
+                    <a href="showcase.html" class="btn-gallery">VIEW ALL →</a>
+                </div>
+
+                <div id="featured-grid" class="grid-base stagger-children" style="padding: 0;">
+                    <!-- Injected by JS — top 4 products -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ TRUST BADGES ═══ -->
+        <section style="border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 5rem 0;">
+            <div class="container">
+                <div class="reveal" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 3rem; text-align: center;">
+                    <div>
+                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">🔒</div>
+                        <h4 style="font-family: var(--font-head); font-size: 0.9rem; margin-bottom: 0.5rem;">AUTHENTICATED</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Every pair verified through our 38-point protocol</p>
+                    </div>
+                    <div>
+                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">📦</div>
+                        <h4 style="font-family: var(--font-head); font-size: 0.9rem; margin-bottom: 0.5rem;">SECURE SHIPPING</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Double-boxed, insured, tracked nationwide</p>
+                    </div>
+                    <div>
+                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">↩️</div>
+                        <h4 style="font-family: var(--font-head); font-size: 0.9rem; margin-bottom: 0.5rem;">14-DAY RETURNS</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Hassle-free returns on deadstock items</p>
+                    </div>
+                    <div>
+                        <div style="font-size: 2.5rem; margin-bottom: 1rem;">🏆</div>
+                        <h4 style="font-family: var(--font-head); font-size: 0.9rem; margin-bottom: 0.5rem;">TRUSTED SINCE 2026</h4>
+                        <p style="font-size: 0.85rem; color: var(--text-muted);">Staten Island's most trusted sneaker archive</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ BRAND STORY ═══ -->
+        <section class="section">
+            <div class="container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;">
+                <div class="reveal-left">
+                    <p class="chapter-title">OUR STORY</p>
+                    <h2 class="display-medium" style="margin-bottom: 2rem;">Born On<br>The Island</h2>
+                    <p style="margin-bottom: 1.5rem; line-height: 1.8;">
+                        Sneaker Zoo started with a simple belief: every pair tells a story. From Hylan Blvd to the world, 
+                        we curate the rarest deadstock and grails for collectors who understand that sneakers are more 
+                        than leather and glue — they're cultural artifacts.
+                    </p>
+                    <p style="margin-bottom: 2rem; line-height: 1.8;">
+                        We don't just sell sneakers. We preserve history. Every item in our archive is authenticated, 
+                        documented, and stored with museum-grade care until it finds its next owner.
+                    </p>
+                    <a href="about.html" class="btn-magnet">READ MANIFESTO</a>
+                </div>
+                <div class="reveal-right" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    <div class="card-glass" style="text-align: center; padding: 3rem;">
+                        <div style="font-family: var(--font-head); font-size: 4rem; font-weight: 800; color: var(--accent);">500+</div>
+                        <div style="font-family: var(--font-cyber); font-size: 0.65rem; letter-spacing: 0.2em; color: var(--text-muted); margin-top: 0.5rem;">PAIRS AUTHENTICATED</div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                        <div class="card-glass" style="text-align: center; padding: 2rem;">
+                            <div style="font-family: var(--font-head); font-size: 2.5rem; font-weight: 800;">100%</div>
+                            <div style="font-family: var(--font-cyber); font-size: 0.6rem; letter-spacing: 0.2em; color: var(--text-muted); margin-top: 0.5rem;">AUTHENTIC</div>
+                        </div>
+                        <div class="card-glass" style="text-align: center; padding: 2rem;">
+                            <div style="font-family: var(--font-head); font-size: 2.5rem; font-weight: 800;">48h</div>
+                            <div style="font-family: var(--font-cyber); font-size: 0.6rem; letter-spacing: 0.2em; color: var(--text-muted); margin-top: 0.5rem;">SHIPPING</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ NEWSLETTER / CTA ═══ -->
+        <section style="padding: 8rem 0; background: var(--surface); border-top: 1px solid var(--line);">
+            <div class="container" style="text-align: center;">
+                <div class="reveal">
+                    <p class="chapter-title">STAY CONNECTED</p>
+                    <h2 class="display-medium" style="margin-bottom: 1.5rem;">Get Early<br><span class="text-accent">Access</span></h2>
+                    <p style="max-width: 500px; margin: 0 auto 3rem; color: var(--text-secondary);">
+                        Be the first to know about new drops, restocks, and exclusive releases.
+                    </p>
+                    <form id="home-newsletter" style="display: flex; gap: 0; max-width: 500px; margin: 0 auto; border: 1px solid var(--line-strong);">
+                        <input type="email" placeholder="YOUR EMAIL" required
+                            style="flex: 1; background: transparent; border: none; color: var(--text-primary); padding: 1.2rem 1.5rem; font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.1em; outline: none;">
+                        <button type="submit" class="btn-accent" style="border: none; white-space: nowrap;">
+                            <span>SUBSCRIBE</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER injected by JS -->
+    <div id="footer-container"></div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

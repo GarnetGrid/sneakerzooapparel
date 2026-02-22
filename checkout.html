@@ -5,66 +5,295 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SNEAKER ZOO // CHECKOUT</title>
-    <meta name="description" content="Secure checkout terminal. Acquire your kinetic assets.">
+    <meta name="description" content="Secure checkout. Complete your acquisition.">
+    <link rel="icon" type="image/jpeg" href="favicon.jpeg">
     <link rel="stylesheet" href="styles.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        .checkout-hero {
+            padding: 12rem 0 3rem;
+            text-align: center;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--line);
+            animation: fadeInUp 0.4s var(--ease-out-expo) backwards;
+        }
+
+        .cart-item img {
+            width: 90px;
+            height: 90px;
+            object-fit: cover;
+            background: var(--surface);
+            border: 1px solid var(--line);
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            margin-bottom: 0.3rem;
+        }
+
+        .cart-item-variant {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .cart-item-price {
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 1.1rem;
+            min-width: 90px;
+            text-align: right;
+        }
+
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-family: var(--font-mono);
+            letter-spacing: 0.1em;
+            padding: 0.5rem;
+            transition: color 0.2s;
+        }
+
+        .cart-item-remove:hover {
+            color: var(--accent);
+        }
+
+        /* Order Summary */
+        .order-summary {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            padding: 2.5rem;
+            position: sticky;
+            top: 8rem;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .summary-total {
+            display: flex;
+            justify-content: space-between;
+            padding: 1.2rem 0;
+            border-top: 1px solid var(--line-strong);
+            margin-top: 0.5rem;
+            font-family: var(--font-head);
+            font-weight: 700;
+            font-size: 1.3rem;
+            color: var(--text-primary);
+        }
+
+        /* Checkout Form */
+        .checkout-section-title {
+            font-family: var(--font-cyber);
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        @media (max-width: 600px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .form-field {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-field label {
+            display: block;
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-field input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--line-strong);
+            color: var(--text-primary);
+            padding: 0.9rem 1rem;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .form-field input:focus {
+            border-color: var(--accent);
+        }
+
+        .secure-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 1.5rem;
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 6rem 2rem;
+            border: 1px dashed var(--line-strong);
+        }
+    </style>
 </head>
 
-<body>
-    <!-- DYNAMIC HEADER INJECTED BY JS -->
+<body class="loading">
+    <div id="loader">
+        <div class="loader-brand">SNEAKER ZOO</div>
+        <div class="loader-bar"></div>
+    </div>
+    <div class="noise-overlay" aria-hidden="true"></div>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
-    <main class="grid-container" style="padding-top: 8rem;">
+    <main id="main-content">
 
-        <!-- LEFT COL: MANIFEST (CART) -->
-        <div style="grid-column: 2 / span 5;">
-            <h3 class="chapter-title">MANIFEST</h3>
+        <div class="checkout-hero">
+            <p class="chapter-title">SECURE CHECKOUT</p>
+            <h1 class="display-medium">YOUR<br><span class="text-accent">ORDER</span></h1>
+        </div>
 
-            <!-- Dynamic Cart Container -->
-            <div id="cart-items" style="margin-top: 2rem; min-height: 200px;">
-                <p style="font-family: var(--font-mono); opacity: 0.5;">LOADING MANIFEST...</p>
+        <div class="checkout-grid container" style="padding-bottom: 6rem;">
+
+            <!-- LEFT: CART + FORM -->
+            <div>
+                <h3 class="chapter-title">MANIFEST</h3>
+                <div id="cart-items">
+                    <p style="font-family: var(--font-mono); opacity: 0.5;">LOADING MANIFEST...</p>
+                </div>
+
+                <!-- CHECKOUT FORM -->
+                <form id="checkout-form" aria-label="Checkout form">
+                    <div class="checkout-section-title">SHIPPING DETAILS</div>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="co-first">FIRST NAME</label>
+                            <input type="text" id="co-first" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="co-last">LAST NAME</label>
+                            <input type="text" id="co-last" required>
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <label for="co-email">EMAIL ADDRESS</label>
+                        <input type="email" id="co-email" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="co-address">STREET ADDRESS</label>
+                        <input type="text" id="co-address" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="co-city">CITY</label>
+                            <input type="text" id="co-city" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="co-state">STATE</label>
+                            <input type="text" id="co-state" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="co-zip">ZIP CODE</label>
+                            <input type="text" id="co-zip" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="co-phone">PHONE</label>
+                            <input type="tel" id="co-phone">
+                        </div>
+                    </div>
+
+                    <div class="checkout-section-title">PAYMENT</div>
+                    <div class="form-field">
+                        <label for="co-card">CARD NUMBER</label>
+                        <input type="text" id="co-card" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-field">
+                            <label for="co-expiry">EXPIRY</label>
+                            <input type="text" id="co-expiry" placeholder="MM / YY" maxlength="7" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="co-cvv">CVV</label>
+                            <input type="text" id="co-cvv" placeholder="123" maxlength="4" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-accent full-width" style="padding: 1.3rem; margin-top: 1rem;">
+                        <span>COMPLETE ORDER</span>
+                    </button>
+
+                    <div class="secure-badge">
+                        🔒 <span>256-bit SSL encrypted. Your data is safe.</span>
+                    </div>
+                </form>
             </div>
 
-            <!-- Totals -->
-            <div
-                style="margin-top: 4rem; font-family: var(--font-mono); font-size: 1.5rem; border-top: 1px solid var(--text); padding-top: 1rem;">
-                <div
-                    style="display: flex; justify-content: space-between; font-size: 1rem; margin-bottom: 0.5rem; opacity: 0.7;">
-                    <span>SUBTOTAL</span>
-                    <span id="cart-subtotal">$0.00</span>
-                </div>
-                <div style="display: flex; justify-content: space-between;">
-                    <span>TOTAL</span>
-                    <span id="cart-total">$0.00</span>
+            <!-- RIGHT: ORDER SUMMARY -->
+            <div>
+                <div class="order-summary">
+                    <h3 class="chapter-title" style="margin-bottom: 1.5rem;">ORDER SUMMARY</h3>
+
+                    <div id="summary-items">
+                        <!-- JS -->
+                    </div>
+
+                    <div class="summary-row">
+                        <span>SUBTOTAL</span>
+                        <span id="cart-subtotal">$0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>SHIPPING</span>
+                        <span id="cart-shipping" style="color: var(--accent);">FREE</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>TAX (EST.)</span>
+                        <span id="cart-tax">$0.00</span>
+                    </div>
+                    <div class="summary-total">
+                        <span>TOTAL</span>
+                        <span id="cart-total">$0.00</span>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <!-- RIGHT COL: PROTOCOL (CHECKOUT FORM) -->
-        <div style="grid-column: 8 / span 4;">
-            <h3 class="chapter-title">PROTOCOL</h3>
-
-            <form id="checkout-form" style="display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2rem;">
-                <input type="text" placeholder="FULL NAME" required
-                    style="background: transparent; border: none; border-bottom: 1px solid var(--text); color: var(--text); padding: 1rem 0; font-family: var(--font-mono); outline: none;">
-                <input type="text" placeholder="SHIPPING COORDINATES" required
-                    style="background: transparent; border: none; border-bottom: 1px solid var(--text); color: var(--text); padding: 1rem 0; font-family: var(--font-mono); outline: none;">
-
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                    <input type="text" placeholder="CREDIT CARD" required
-                        style="background: transparent; border: none; border-bottom: 1px solid var(--text); color: var(--text); padding: 1rem 0; font-family: var(--font-mono); outline: none;">
-                    <input type="text" placeholder="MM/YY / CVV" required
-                        style="background: transparent; border: none; border-bottom: 1px solid var(--text); color: var(--text); padding: 1rem 0; font-family: var(--font-mono); outline: none;">
-                </div>
-
-                <button type="submit" class="btn-gallery full-width"
-                    style="margin-top: 2rem; background: var(--text); color: var(--bg); border: none;">INITIATE
-                    TRANSFER</button>
-            </form>
-        </div>
-
     </main>
 
-    <!-- Global App Scripts -->
+    <div id="footer-container"></div>
+
     <script src="data.js"></script>
     <script src="script.js"></script>
 </body>

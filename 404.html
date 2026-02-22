@@ -4,65 +4,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - Lost in the Zoo | Sneaker Zoo & Apparel</title>
-    <meta name="robots" content="noindex, follow">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    <!-- Security Optimization -->
-    <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; script-src 'self' 'unsafe-inline';">
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800;900&display=swap"
-        rel="stylesheet">
+    <title>SNEAKER ZOO // 404</title>
+    <link rel="icon" type="image/jpeg" href="favicon.jpeg">
     <link rel="stylesheet" href="styles.css">
-    <link rel="icon" type="image/png" href="assets/images/real_logo.png">
-    <link rel="apple-touch-icon" href="assets/images/real_logo.png">
     <style>
-        .error-container {
-            min-height: 80vh;
+        .error-page {
+            min-height: 100vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
             padding: 2rem;
+            position: relative;
+        }
+
+        .error-page::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255, 45, 45, 0.05), transparent 60%);
         }
 
         .error-code {
-            font-family: var(--font-heading);
-            font-size: 8rem;
+            font-family: var(--font-head);
+            font-size: clamp(8rem, 20vw, 16rem);
             font-weight: 900;
-            color: var(--zoo-red);
-            line-height: 1;
-            text-shadow: 0 0 20px rgba(225, 28, 40, 0.3);
+            line-height: 0.9;
+            color: transparent;
+            -webkit-text-stroke: 2px var(--line-strong);
+            margin-bottom: 1rem;
         }
 
-        .error-msg {
-            font-size: 2rem;
-            margin-bottom: 2rem;
+        .error-message {
+            font-family: var(--font-head);
+            font-size: 1.5rem;
             font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+        }
+
+        .error-detail {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 2.5rem;
         }
     </style>
 </head>
 
 <body>
-    <!-- Navigation -->
-    <!-- Header injected by script.js -->
+    <div class="noise-overlay" aria-hidden="true"></div>
 
-    <main class="error-container">
-        <h1 class="error-code">404</h1>
-        <div class="error-msg">LOST IN THE ZOO</div>
-        <p style="max-width: 500px; margin-bottom: 3rem; color: var(--text-secondary);">
-            The page you are looking for has been sold out, dropped, or never existed.
-            Don't worry, the fresh drops are back at the shop.
-        </p>
-        <a href="index.html" class="btn-hype">Return to Base</a>
+    <main class="error-page">
+        <div style="position: relative; z-index: 2;">
+            <div class="error-code">404</div>
+            <h1 class="error-message">LOST IN THE <span class="text-accent">ZOO</span></h1>
+            <p class="error-detail">This artifact doesn't exist in the archive.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="index.html" class="btn-accent"><span>GO HOME</span></a>
+                <a href="showcase.html" class="btn-magnet">BROWSE ARCHIVE</a>
+            </div>
+        </div>
     </main>
-
-    <!-- Footer injected by script.js (if applicable or left empty) -->
-    <script src="script.js"></script>
 </body>
 
 </html>
